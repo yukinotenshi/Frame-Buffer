@@ -4,6 +4,13 @@
 
 #include "polygon.h"
 
+
+Polygon::Polygon(const std::vector<Point>& points) {
+    for (Point p : points) {
+        this->points.push_back(p);
+    }
+}
+
 Polygon::Polygon(int count, ...) {
     va_list args;
     va_start(args, count);

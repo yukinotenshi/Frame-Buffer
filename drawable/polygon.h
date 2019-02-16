@@ -17,6 +17,8 @@ private:
     std::vector<Point> points;
 
 public:
+    explicit Polygon(const std::vector<Point>& points);
+
     explicit Polygon(int count, ...);
 
     void draw() override;
