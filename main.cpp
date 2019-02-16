@@ -56,17 +56,14 @@ int main() {
     p1.setX(500);
     p1.setY(500);
 
-    for (int x = 0; x < 1000; x++) {
-        usleep(10000);
-        for (Rectangle& rect : rects) {
-            rect.rotate(p1, 0.01);
-        }
-        for (Polygon& polygon : polygons) {
-            polygon.rotate(p1, 0.01);
-        }
-        for (Circle& circle : circles) {
-            circle.rotate(p1, 0.01);
-        }
+    for (Rectangle& rect : rects) {
+        rect.draw();
+    }
+    for (Polygon& polygon : polygons) {
+        polygon.draw();
+    }
+    for (Circle& circle : circles) {
+        circle.draw();
     }
 
     return 0;

@@ -13,7 +13,7 @@ private:
 public:
     static std::vector<Point> generatePoint(Point p1, Point p2) {
         std::vector<Point> points;
-        int dx = p2.getX() - p1.getY();
+        int dx = p2.getX() - p1.getX();
         points.push_back(p1);
         p1.setX(p1.getX() + dx);
         points.push_back(p1);
