@@ -8,20 +8,20 @@
 
 class Point {
 private:
-    long x;
-    long y;
+    double x;
+    double y;
 public:
     Point();
 
-    Point(long x, long y);
+    Point(double x, double y);
 
-    long getX() const;
+    double getX() const;
 
-    void setX(long x);
+    void setX(double x);
 
-    long getY() const;
+    double getY() const;
 
-    void setY(long y);
+    void setY(double y);
 };
 
 

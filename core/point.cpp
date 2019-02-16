@@ -9,20 +9,20 @@ Point::Point() {
     this->y = 0;
 }
 
-long Point::getX() const {
+Point::Point(double x, double y) : x(x), y(y) {}
+
+double Point::getX() const {
     return x;
 }
 
-void Point::setX(long x) {
+void Point::setX(double x) {
     Point::x = x;
 }
 
-long Point::getY() const {
+double Point::getY() const {
     return y;
 }
 
-void Point::setY(long y) {
+void Point::setY(double y) {
     Point::y = y;
 }
-
-Point::Point(long x, long y) : x(x), y(y) {}
