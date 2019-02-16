@@ -9,6 +9,8 @@
 #include "drawable/line.h"
 #include "drawable/polygon.h"
 #include "factory/line_factory.h"
+#include "factory/polygon_factory.h"
+#include "factory/circle_factory.h"
 #include <unistd.h>
 #include <vector>
 
@@ -17,24 +19,25 @@ int main() {
     LineFactory lineFactory("example_files/line.txt");
     lines = lineFactory.generate();
 
-    Point p1, p2, p3;
-    p1.setY(100);
-    p2.setY(200);
-    p3.setX(100);
+    std::vector<Polygon> polygons;
+    PolygonFactory polygonFactory("example_files/polygon.txt");
+    polygons = polygonFactory.generate();
 
-    Polygon polygon(3, p1, p2, p3);
-    polygon.draw();
-
-    Circle circle(p1, 100);
-    circle.draw();
+    std::vector<Circle> circles;
+    CircleFactory circleFactory("example_files/circle.txt");
+    circles = circleFactory.generate();
 
     for (int x = 0; x < 1000; x++) {
         usleep(1000);
         for (Line& line : lines) {
             line.move(1,1);
         }
-        polygon.move(1,1);
-        circle.move(1,1);
+        for (Polygon& polygon : polygons) {
+            polygon.move(1,1);
+        }
+        for (Circle& circle : circles) {
+            circle.move(1,1);
+        }
     }
 
     return 0;
