@@ -113,9 +113,9 @@ void Circle::move(long x, long y) {
 
 void Circle::rotate(const Point &anchor, double degree) {
     del();
-    int dx = anchor.getX() - center.getX();
-    int dy = anchor.getY() - center.getY();
-    center.setX((long) (dx * cos(degree) - dy * sin(degree) + center.getX()));
-    center.setY((long) (dx * sin(degree) - dy * cos(degree) + center.getY()));
+    double dx = -anchor.getX() + center.getX();
+    double dy = -anchor.getY() + center.getY();
+    center.setX((long) (dx * cos(degree) - dy * sin(degree) + anchor.getX()));
+    center.setY((long) (dx * sin(degree) - dy * cos(degree) + anchor.getY()));
     draw();
 }
