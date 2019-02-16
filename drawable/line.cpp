@@ -4,8 +4,7 @@
 
 #include "line.h"
 
-Line::Line(const Color &color, const Canvas &canvas, const Point &from, const Point &to) : Drawable(color, canvas),
-                                                                                           from(from), to(to) {}
+Line::Line(const Point &from, const Point &to) : Drawable(), from(from), to(to) {}
 
 const Point &Line::getFrom() const {
     return from;

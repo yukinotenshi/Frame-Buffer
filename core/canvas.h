@@ -23,8 +23,11 @@ private:
     char *buffer = NULL;
     size_t buflen;
     int file;
-public:
+
+    static Canvas* instance;
     Canvas();
+public:
+    static Canvas* getInstance();
     ~Canvas();
     void writePoint(Point p, Color c);
     void deletePoint(Point p);

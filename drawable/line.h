@@ -14,7 +14,7 @@ private:
     Point from;
     Point to;
 public:
-    Line(const Color &color, const Canvas &canvas, const Point &from, const Point &to);
+    Line(const Point &from, const Point &to);
 
     const Point &getFrom() const;
 

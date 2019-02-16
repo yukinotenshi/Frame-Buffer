@@ -20,6 +20,13 @@ Canvas::Canvas() {
     }
 }
 
+Canvas* Canvas::getInstance() {
+    if (!instance) {
+        instance = new Canvas;
+    }
+    return instance;
+}
+
 Canvas::~Canvas() {
     if (file >= 0) {
         close(file);
@@ -28,6 +35,8 @@ Canvas::~Canvas() {
     if (buffer && buffer != MAP_FAILED) {
         munmap(buffer, buflen);
     }
+
+    delete instance;
 }
 
 void Canvas::writePoint(Point p, Color c) {

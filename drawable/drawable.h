@@ -11,9 +11,11 @@
 class Drawable {
 protected:
     Color color;
-    Canvas canvas;
+    Canvas* canvas;
 public:
-    Drawable(const Color &color, const Canvas &canvas) : color(color), canvas(canvas) {}
+    Drawable() {
+        canvas = Canvas::getInstance();
+    }
 
     virtual void draw() = 0;
 
