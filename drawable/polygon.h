@@ -15,6 +15,7 @@
 class Polygon : public Drawable {
 private:
     std::vector<Point> points;
+    std::vector<Point> prevPoints;
 
 public:
     explicit Polygon(const std::vector<Point>& points);

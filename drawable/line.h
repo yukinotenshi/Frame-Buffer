@@ -13,6 +13,8 @@ class Line : public Drawable{
 private:
     Point from;
     Point to;
+    Point prevFrom;
+    Point prevTo;
 public:
     Line();
 

@@ -4,9 +4,9 @@
 
 #include "line.h"
 
-Line::Line() : Drawable(), from(), to() {};
+Line::Line() : Drawable(), from(), to(), prevFrom(), prevTo() {};
 
-Line::Line(const Point &from, const Point &to) : Drawable(), from(from), to(to) {}
+Line::Line(const Point &from, const Point &to) : Drawable(), from(from), to(to), prevFrom(from), prevTo(to) {}
 
 const Point &Line::getFrom() const {
     return from;
@@ -90,8 +90,8 @@ void Line::move(long x, long y) {
 void Line::rotate(const Point& anchor, double degree) {
     del();
 
-    Point prevFrom = from;
-    Point prevTo = to;
+    from = prevFrom;
+    to = prevTo;
 
     double fromdx = -anchor.getX() + from.getX();
     double fromdy = -anchor.getY() + from.getY();
@@ -106,7 +106,4 @@ void Line::rotate(const Point& anchor, double degree) {
     to.setY((int) (todx * sin(currentDegree) + tody * cos(currentDegree) + anchor.getY()));
 
     draw();
-
-    from = prevFrom;
-    to = prevTo;
 }

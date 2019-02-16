@@ -8,6 +8,7 @@
 Polygon::Polygon(const std::vector<Point>& points) {
     for (const Point& p : points) {
         this->points.push_back(p);
+        this->prevPoints.push_back(p);
     }
 }
 
@@ -16,6 +17,7 @@ Polygon::Polygon(int count, ...) {
     va_start(args, count);
     for (int i = 0; i < count; i++) {
         this->points.push_back(va_arg(args, Point));
+        this->prevPoints.push_back(va_arg(args, Point));
     }
     va_end(args);
 }
@@ -54,6 +56,7 @@ void Polygon::move(long x, long y) {
         Point& p = points.at(i);
         p.setX(p.getX() + x);
         p.setY(p.getY() + y);
+        prevPoints.at(i) = p;
     }
 
     draw();
@@ -62,10 +65,10 @@ void Polygon::move(long x, long y) {
 //modified from : https://gamedev.stackexchange.com/questions/121478/how-to-rotate-a-2d-line
 void Polygon::rotate(const Point &anchor, double degree) {
     del();
-    std::vector<Point> prevPoints;
+    for (unsigned int i = 0; i < points.size(); i++) {
+        points.at(i) = prevPoints.at(i);
+    }
     for (Point& point : points) {
-        Point prevPoint(point.getX(), point.getY());
-        prevPoints.push_back(prevPoint);
         double dx = -anchor.getX() + point.getX();
         double dy = -anchor.getY() + point.getY();
         currentDegree += degree;
@@ -75,8 +78,4 @@ void Polygon::rotate(const Point &anchor, double degree) {
         point.setY(floor(dx * sin_ + dy * cos_ + (double) anchor.getY()));
     }
     draw();
-    for (unsigned int i = 0; i < points.size(); i++) {
-        points.at(i).setX(prevPoints.at(i).getX());
-        points.at(i).setY(prevPoints.at(i).getY());
-    }
 }

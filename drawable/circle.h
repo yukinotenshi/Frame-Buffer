@@ -12,6 +12,7 @@
 class Circle : public Drawable {
 private:
     Point center;
+    Point prevCenter;
     int radius;
 
     std::vector<Point> generateQuadrants(Point p);
@@ -20,7 +21,7 @@ private:
 
     void delQuadrants(Point p);
 public:
-    Circle() : Drawable(), center() {radius = 0;}
+    Circle() : Drawable(), center() {radius = 0; prevCenter = center;}
 
     Circle(const Point &center, int radius) : center(center), radius(radius) {}
 
