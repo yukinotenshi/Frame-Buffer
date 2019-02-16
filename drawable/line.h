@@ -9,7 +9,7 @@
 #include "../core/point.h"
 #include "drawable.h"
 
-class Line : Drawable{
+class Line : public Drawable{
 private:
     Point from;
     Point to;

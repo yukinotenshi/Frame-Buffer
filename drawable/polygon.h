@@ -12,7 +12,7 @@
 #include "line.h"
 
 
-class Polygon : Drawable {
+class Polygon : public Drawable {
 private:
     std::vector<Point> points;
 

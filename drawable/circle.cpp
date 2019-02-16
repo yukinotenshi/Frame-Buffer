@@ -48,7 +48,7 @@ void Circle::drawQuadrants(Point p) {
     points = generateQuadrants(p);
 
     for (auto point : points) {
-        canvas->writePoint(point, color);
+        this->writePoint(point, color);
     }
 }
 
@@ -57,7 +57,7 @@ void Circle::delQuadrants(Point p) {
     points = generateQuadrants(p);
 
     for (auto point : points) {
-        canvas->deletePoint(point);
+        this->deletePoint(point);
     }
 }
 

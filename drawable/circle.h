@@ -9,7 +9,7 @@
 #include "../core/point.h"
 #include <vector>
 
-class Circle : Drawable {
+class Circle : public Drawable {
 private:
     Point center;
     int radius;
