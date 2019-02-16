@@ -6,6 +6,7 @@
 #include "core/color.h"
 #include "core/point.h"
 #include "drawable/line.h"
+#include <unistd.h>
 
 int main() {
     Canvas canvas;
@@ -18,7 +19,8 @@ int main() {
     line.draw();
 
     for (int x = 0; x < 1000; x++) {
-        line.move(x,x);
+        usleep(1000);
+        line.move(1,1);
     }
 
     return 0;

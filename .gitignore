@@ -34,3 +34,9 @@
 #Clion
 .idea/
 cmake-build-debug/
+
+#Make files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
