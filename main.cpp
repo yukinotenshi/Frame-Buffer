@@ -61,12 +61,12 @@ int main() {
         for (Line& line : lines) {
             line.rotate(p1, 0.1);
         }
-        /*for (Polygon& polygon : polygons) {
-            polygon.rotate(p1, 0.01);
+        for (Polygon& polygon : polygons) {
+            polygon.rotate(p1, 0.1);
         }
         for (Circle& circle : circles) {
-            circle.rotate(p1, 0.01);
-        }*/
+            circle.rotate(p1, 0.1);
+        }
     }
 
     return 0;
