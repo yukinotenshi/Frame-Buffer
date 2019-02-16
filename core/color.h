@@ -2,28 +2,20 @@
 // Created by Gabriel Raphael on 16/02/2019.
 //
 
-#ifndef FRAME_BUFFER_POINT_H
-#define FRAME_BUFFER_POINT_H
+#ifndef FRAME_BUFFER_COLOR_H
+#define FRAME_BUFFER_COLOR_H
 
 
-class Point {
+class Color {
 private:
-    long x;
-    long y;
     char r;
     char g;
     char b;
     char a;
 public:
-    Point();
+    Color();
 
-    long getX() const;
-
-    void setX(long x);
-
-    long getY() const;
-
-    void setY(long y);
+    Color(char r, char g, char b, char a);
 
     char getR() const;
 
@@ -43,4 +35,4 @@ public:
 };
 
 
-#endif //FRAME_BUFFER_POINT_H
+#endif //FRAME_BUFFER_COLOR_H

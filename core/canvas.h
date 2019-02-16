@@ -12,7 +12,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "drawable/point.h"
+#include "point.h"
+#include "color.h"
 
 
 class Canvas {
@@ -25,9 +26,9 @@ private:
 public:
     Canvas();
     ~Canvas();
-    void writePoint(Point p);
+    void writePoint(Point p, Color c);
     void deletePoint(Point p);
-    void movePoint(Point from, Point to);
+    void movePoint(Point from, Point to, Color c);
 };
 
 #endif //FRAME_BUFFER_CANVAS_H

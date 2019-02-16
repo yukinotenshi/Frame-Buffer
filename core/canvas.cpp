@@ -30,12 +30,12 @@ Canvas::~Canvas() {
     }
 }
 
-void Canvas::writePoint(Point p) {
+void Canvas::writePoint(Point p, Color c) {
     long offset = p.getX() * screen_info.bits_per_pixel/8 + p.getY() * fixed_info.line_length;
-    buffer[offset] = p.getR();
-    buffer[offset+1] = p.getG();
-    buffer[offset+2] = p.getB();
-    buffer[offset+3] = p.getA();
+    buffer[offset] = c.getR();
+    buffer[offset+1] = c.getG();
+    buffer[offset+2] = c.getB();
+    buffer[offset+3] = c.getA();
 }
 
 void Canvas::deletePoint(Point p) {
@@ -46,9 +46,9 @@ void Canvas::deletePoint(Point p) {
     buffer[offset+3] = 0x00;
 }
 
-void Canvas::movePoint(Point from, Point to) {
+void Canvas::movePoint(Point from, Point to, Color c) {
     deletePoint(from);
     from.setX(to.getX());
     from.setY(to.getY());
-    writePoint(from);
+    writePoint(from, c);
 }
