@@ -28,19 +28,20 @@ int main() {
     CircleFactory circleFactory("example_files/circle.txt");
     circles = circleFactory.generate();
 
-    Point p1;
+    Point p1, p2, p3, p4;
     View view;
     view.pushLeft(p1);
     view.pushTop(p1);
-    p1.setX(1000);
-    view.pushTop(p1);
-    view.pushRight(p1);
-    p1.setY(1000);
-    view.pushRight(p1);
-    view.pushBottom(p1);
-    p1.setX(1000);
-    view.pushLeft(p1);
-    view.pushRight(p1);
+    p2.setX(100);
+    view.pushTop(p2);
+    view.pushRight(p2);
+    p3.setX(100);
+    p3.setY(100);
+    view.pushRight(p3);
+    view.pushBottom(p3);
+    p4.setY(100);
+    view.pushLeft(p4);
+    view.pushBottom(p4);
 
     for (Line& line : lines) {
         line.setView(view);

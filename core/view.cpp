@@ -34,13 +34,13 @@ bool View::inBoundary(const Point &p) {
     }
 
     for (Point& point : top) {
-        if (p.getY() > point.getY()) {
+        if (p.getY() < point.getY()) {
             return false;
         }
     }
 
     for (Point& point : bottom) {
-        if (p.getY() < point.getY()) {
+        if (p.getY() > point.getY()) {
             return false;
         }
     }
@@ -55,5 +55,5 @@ bool View::viewDefined() {
     result += bottom.size();
     result += right.size();
 
-    return result > 0;
+    return (result > 0);
 }

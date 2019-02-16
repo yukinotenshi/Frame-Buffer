@@ -15,22 +15,22 @@ protected:
     Canvas* canvas;
     View view;
 
-    void writePoint(Point p, Color c) {
+    void writePoint(const Point& p, Color c) {
         if (view.viewDefined() && view.inBoundary(p)) {
             canvas->writePoint(p, c);
         }
 
-        if (!view.viewDefined()) {
+        if (! view.viewDefined()) {
             canvas->writePoint(p, c);
         }
     }
 
-    void deletePoint(Point p) {
+    void deletePoint(const Point& p) {
         if (view.viewDefined() && view.inBoundary(p)) {
             canvas->deletePoint(p);
         }
 
-        if (!view.viewDefined()) {
+        if (! view.viewDefined()) {
             canvas->deletePoint(p);
         }
     }
@@ -59,7 +59,7 @@ public:
     }
 
     void setView(const View &view) {
-        Drawable::view = view;
+        this->view = view;
     }
 };
 

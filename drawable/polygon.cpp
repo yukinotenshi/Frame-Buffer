@@ -6,7 +6,7 @@
 
 
 Polygon::Polygon(const std::vector<Point>& points) {
-    for (Point p : points) {
+    for (const Point& p : points) {
         this->points.push_back(p);
     }
 }
@@ -25,6 +25,7 @@ void Polygon::draw() {
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));
+        temp.setView(view);
         temp.draw();
     }
 
@@ -38,6 +39,7 @@ void Polygon::del() {
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));
+        temp.setView(view);
         temp.del();
     }
 
