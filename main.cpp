@@ -59,13 +59,13 @@ int main() {
     for (int x = 0; x < 1000; x++) {
         usleep(10000);
         for (Line& line : lines) {
-            line.rotate(p1, 0.1);
+            line.rotate(p1, 0.5);
         }
         for (Polygon& polygon : polygons) {
-            polygon.rotate(p1, 0.1);
+            polygon.rotate(p1, 0.5);
         }
         for (Circle& circle : circles) {
-            circle.rotate(p1, 0.1);
+            circle.rotate(p1, 0.5);
         }
     }
 
