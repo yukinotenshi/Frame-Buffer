@@ -13,4 +13,4 @@ add_executable(Frame_Buffer
         drawable/polygon.cpp
         drawable/circle.cpp
         factory/line_factory.cpp
-        factory/base_factory.cpp)
+        factory/base_factory.h)

@@ -16,9 +16,9 @@ protected:
     std::ifstream file;
 
 public:
-    BaseFactory(const std::string &filename);
+    BaseFactory(std::string filename) : filename(filename), file(filename.c_str()) {}
 
-    virtual ~BaseFactory();
+    virtual ~BaseFactory() {file.close();};
     virtual  std::vector<T> generate() = 0;
 };
 

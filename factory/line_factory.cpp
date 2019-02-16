@@ -4,7 +4,7 @@
 
 #include "line_factory.h"
 
-LineFactory::LineFactory(const std::string &filename) : BaseFactory(filename) {}
+LineFactory::LineFactory(std::string filename) : BaseFactory<Line>(filename) {}
 
 std::vector<Line> LineFactory::generate() {
     int x1, y1, x2, y2;

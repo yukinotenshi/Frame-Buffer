@@ -16,7 +16,6 @@ int main() {
     std::vector<Line> lines;
     LineFactory lineFactory("example_files/line.txt");
     lines = lineFactory.generate();
-    Line line = lines.at(0);
 
     Point p1, p2, p3;
     p1.setY(100);
@@ -31,7 +30,9 @@ int main() {
 
     for (int x = 0; x < 1000; x++) {
         usleep(1000);
-        line.move(1,1);
+        for (Line& line : lines) {
+            line.move(1,1);
+        }
         polygon.move(1,1);
         circle.move(1,1);
     }

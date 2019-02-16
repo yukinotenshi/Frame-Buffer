@@ -12,7 +12,9 @@
 
 class LineFactory : BaseFactory<Line> {
 public:
-    LineFactory(const std::string &filename);
+    LineFactory(std::string filename);
+
+    ~LineFactory() {};
 
     std::vector<Line> generate() override;
 };
