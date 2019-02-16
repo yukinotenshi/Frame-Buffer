@@ -6,6 +6,7 @@
 #include "core/color.h"
 #include "core/point.h"
 #include "drawable/line.h"
+#include "drawable/polygon.h"
 #include <unistd.h>
 
 int main() {
@@ -21,5 +22,12 @@ int main() {
         line.move(1,1);
     }
 
+    Point p1, p2, p3;
+    p1.setY(100);
+    p2.setY(200);
+    p3.setX(100);
+
+    Polygon polygon(3, p1, p2, p3);
+    polygon.draw();
     return 0;
 }

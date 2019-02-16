@@ -4,6 +4,8 @@
 
 #include "line.h"
 
+Line::Line() : Drawable(), from(), to() {};
+
 Line::Line(const Point &from, const Point &to) : Drawable(), from(from), to(to) {}
 
 const Point &Line::getFrom() const {

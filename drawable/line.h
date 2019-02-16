@@ -14,6 +14,8 @@ private:
     Point from;
     Point to;
 public:
+    Line();
+
     Line(const Point &from, const Point &to);
 
     const Point &getFrom() const;
