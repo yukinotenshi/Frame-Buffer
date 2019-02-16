@@ -66,7 +66,7 @@ void Polygon::rotate(const Point &anchor, double degree) {
         double dx = -anchor.getX() + point.getX();
         double dy = -anchor.getY() + point.getY();
         point.setX((long) (dx * cos(degree) - dy * sin(degree) + anchor.getX()));
-        point.setY((long) (dx * sin(degree) - dy * cos(degree) + anchor.getY()));
+        point.setY((long) (dx * sin(degree) + dy * cos(degree) + anchor.getY()));
     }
     draw();
 }
