@@ -90,15 +90,15 @@ void Line::move(long x, long y) {
 void Line::rotate(const Point& anchor, double degree) {
     del();
 
-    int fromdx = anchor.getX() - from.getX();
-    int fromdy = anchor.getY() - from.getY();
-    int todx = anchor.getX() - to.getX();
-    int tody = anchor.getY() - to.getY();
+    double fromdx = -anchor.getX() + from.getX();
+    double fromdy = -anchor.getY() + from.getY();
+    double todx = -anchor.getX() + to.getX();
+    double tody = -anchor.getY() + to.getY();
 
-    from.setX((long) (fromdx * cos(degree) - fromdy * sin(degree) + from.getX()));
-    from.setY((long) (fromdx * sin(degree) - fromdy * cos(degree) + from.getY()));
-    to.setX((long) (todx * cos(degree) - tody * sin(degree) + to.getX()));
-    to.setY((long) (todx * sin(degree) - tody * cos(degree) + to.getY()));
+    from.setX((int) (fromdx * cos(degree) - fromdy * sin(degree) +  anchor.getX()));
+    from.setY((int) (fromdx * sin(degree) + fromdy * cos(degree) +  anchor.getY()));
+    to.setX((int) (todx * cos(degree) - tody * sin(degree) + anchor.getX()));
+    to.setY((int) (todx * sin(degree) + tody * cos(degree) + anchor.getY()));
 
     draw();
 }

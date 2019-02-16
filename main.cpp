@@ -32,18 +32,18 @@ int main() {
     View view;
     view.pushLeft(p1);
     view.pushTop(p1);
-    p2.setX(100);
+    p2.setX(500);
     view.pushTop(p2);
     view.pushRight(p2);
-    p3.setX(100);
-    p3.setY(100);
+    p3.setX(500);
+    p3.setY(500);
     view.pushRight(p3);
     view.pushBottom(p3);
-    p4.setY(100);
+    p4.setY(500);
     view.pushLeft(p4);
     view.pushBottom(p4);
 
-    for (Line& line : lines) {
+    /*for (Line& line : lines) {
         line.setView(view);
     }
     for (Polygon& polygon : polygons) {
@@ -51,19 +51,22 @@ int main() {
     }
     for (Circle& circle : circles) {
         circle.setView(view);
-    }
+    }*/
+
+    p1.setX(500);
+    p1.setY(500);
 
     for (int x = 0; x < 1000; x++) {
-        usleep(1000);
+        usleep(10000);
         for (Line& line : lines) {
-            line.move(1,1);
+            line.rotate(p1, 0.1);
         }
-        for (Polygon& polygon : polygons) {
-            polygon.move(1,1);
+        /*for (Polygon& polygon : polygons) {
+            polygon.rotate(p1, 0.01);
         }
         for (Circle& circle : circles) {
-            circle.move(1,1);
-        }
+            circle.rotate(p1, 0.01);
+        }*/
     }
 
     return 0;
