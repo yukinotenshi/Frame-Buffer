@@ -41,7 +41,7 @@ void Polygon::del() {
 
 void Polygon::move(long x, long y) {
     del();
-    for (unsigned int i = 0; i < points.size()-1; i++) {
+    for (unsigned int i = 0; i < points.size(); i++) {
         Point& p = points.at(i);
         p.setX(p.getX() + x);
         p.setY(p.getY() + y);
