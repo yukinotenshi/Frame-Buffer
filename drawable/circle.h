@@ -31,6 +31,8 @@ public:
     void del() override;
 
     void execute(char action);
+
+    void rotate(const Point& anchor, double degree);
 };
 
 

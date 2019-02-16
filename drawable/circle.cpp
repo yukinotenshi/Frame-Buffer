@@ -3,6 +3,7 @@
 //
 
 #include "circle.h"
+#include "math.h"
 
 std::vector<Point> Circle::generateQuadrants(Point p) {
     std::vector<Point> points;
@@ -108,4 +109,13 @@ void Circle::move(long x, long y) {
     center.setY(center.getY() + y);
     center.setX(center.getX() + x);
     execute('c');
+}
+
+void Circle::rotate(const Point &anchor, double degree) {
+    del();
+    int dx = anchor.getX() - center.getX();
+    int dy = anchor.getY() - center.getY();
+    center.setX((long) (dx * cos(degree) - dy * sin(degree) + center.getX()));
+    center.setY((long) (dx * sin(degree) - dy * cos(degree) + center.getY()));
+    draw();
 }

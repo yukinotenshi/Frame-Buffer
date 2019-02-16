@@ -85,3 +85,20 @@ void Line::move(long x, long y) {
     to.setY(to.getY() + y);
     execute('c');
 }
+
+//modified from : https://gamedev.stackexchange.com/questions/121478/how-to-rotate-a-2d-line
+void Line::rotate(const Point& anchor, double degree) {
+    del();
+
+    int fromdx = anchor.getX() - from.getX();
+    int fromdy = anchor.getY() - from.getY();
+    int todx = anchor.getX() - to.getX();
+    int tody = anchor.getY() - to.getY();
+
+    from.setX((long) (fromdx * cos(degree) - fromdy * sin(degree) + from.getX()));
+    from.setY((long) (fromdx * sin(degree) - fromdy * cos(degree) + from.getY()));
+    to.setX((long) (todx * cos(degree) - tody * sin(degree) + to.getX()));
+    to.setY((long) (todx * sin(degree) - tody * cos(degree) + to.getY()));
+
+    draw();
+}

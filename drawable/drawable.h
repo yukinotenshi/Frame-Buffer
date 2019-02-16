@@ -46,6 +46,8 @@ public:
 
     virtual void move(long x, long y) = 0;
 
+    virtual void rotate(const Point& anchor, double degree) = 0;
+
     const Color &getColor() const {
         return color;
     }
