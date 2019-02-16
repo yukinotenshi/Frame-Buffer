@@ -24,3 +24,5 @@ long Point::getY() const {
 void Point::setY(long y) {
     Point::y = y;
 }
+
+Point::Point(long x, long y) : x(x), y(y) {}

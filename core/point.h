@@ -13,6 +13,8 @@ private:
 public:
     Point();
 
+    Point(long x, long y);
+
     long getX() const;
 
     void setX(long x);
