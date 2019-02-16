@@ -113,8 +113,8 @@ void Circle::move(long x, long y) {
 }
 
 void Circle::rotate(const Point &anchor, double degree) {
-    center = prevCenter;
     del();
+    center = prevCenter;
     double dx = -anchor.getX() + center.getX();
     double dy = -anchor.getY() + center.getY();
     currentDegree += degree;
