@@ -14,6 +14,7 @@ protected:
     Color color;
     Canvas* canvas;
     View view;
+    double currentDegree;
 
     void writePoint(const Point& p, Color c) {
         if (view.viewDefined() && view.inBoundary(p)) {
@@ -38,6 +39,7 @@ protected:
 public:
     Drawable() {
         canvas = Canvas::getInstance();
+        currentDegree = 0.0;
     }
 
     virtual void draw() = 0;
