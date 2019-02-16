@@ -7,6 +7,7 @@
 
 #include "drawable.h"
 #include "../core/point.h"
+#include <vector>
 
 class Circle : Drawable {
 private:

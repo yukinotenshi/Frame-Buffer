@@ -2,7 +2,6 @@
 // Created by Gabriel Raphael on 16/02/2019.
 //
 
-#include <vector>
 #include "circle.h"
 
 std::vector<Point> Circle::generateQuadrants(Point p) {
