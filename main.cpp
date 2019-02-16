@@ -6,9 +6,9 @@
 #include "core/color.h"
 #include "core/point.h"
 #include "drawable/circle.h"
-#include "drawable/line.h"
+#include "drawable/rectangle.h"
 #include "drawable/polygon.h"
-#include "factory/line_factory.h"
+#include "factory/rectangle_factory.h"
 #include "factory/polygon_factory.h"
 #include "factory/circle_factory.h"
 #include "core/view.h"
@@ -16,9 +16,9 @@
 #include <vector>
 
 int main() {
-    std::vector<Line> lines;
-    LineFactory lineFactory("example_files/line.txt");
-    lines = lineFactory.generate();
+    std::vector<Rectangle> rects;
+    RectangleFactory rectangleFactory("example_files/rectangle.txt");
+    rects = rectangleFactory.generate();
 
     std::vector<Polygon> polygons;
     PolygonFactory polygonFactory("example_files/polygon.txt");
@@ -58,14 +58,14 @@ int main() {
 
     for (int x = 0; x < 1000; x++) {
         usleep(10000);
-        for (Line& line : lines) {
-            line.rotate(p1, 0.5);
+        for (Rectangle& rect : rects) {
+            rect.rotate(p1, 0.01);
         }
         for (Polygon& polygon : polygons) {
-            polygon.rotate(p1, 0.5);
+            polygon.rotate(p1, 0.01);
         }
         for (Circle& circle : circles) {
-            circle.rotate(p1, 0.5);
+            circle.rotate(p1, 0.01);
         }
     }
 
