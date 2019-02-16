@@ -8,15 +8,15 @@
 #include "drawable/circle.h"
 #include "drawable/line.h"
 #include "drawable/polygon.h"
+#include "factory/line_factory.h"
 #include <unistd.h>
+#include <vector>
 
 int main() {
-    Point from;
-    Point to;
-    to.setX(from.getX() + 100);
-    to.setY(from.getY() + 100);
-    Line line(from, to);
-    line.draw();
+    std::vector<Line> lines;
+    LineFactory lineFactory("example_files/line.txt");
+    lines = lineFactory.generate();
+    Line line = lines.at(0);
 
     Point p1, p2, p3;
     p1.setY(100);
@@ -26,7 +26,7 @@ int main() {
     Polygon polygon(3, p1, p2, p3);
     polygon.draw();
 
-    Circle circle(from, 100);
+    Circle circle(p1, 100);
     circle.draw();
 
     for (int x = 0; x < 1000; x++) {

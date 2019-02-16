@@ -3,4 +3,14 @@ project(Frame_Buffer)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Frame_Buffer main.cpp core/canvas.cpp core/point.cpp drawable/line.cpp drawable/drawable.h core/color.cpp drawable/polygon.cpp drawable/circle.cpp)
+add_executable(Frame_Buffer
+        main.cpp
+        core/canvas.cpp
+        core/point.cpp
+        drawable/line.cpp
+        drawable/drawable.h
+        core/color.cpp
+        drawable/polygon.cpp
+        drawable/circle.cpp
+        factory/line_factory.cpp
+        factory/base_factory.cpp)
