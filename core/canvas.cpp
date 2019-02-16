@@ -10,7 +10,7 @@ Canvas::Canvas() {
         if (!ioctl(file, FBIOGET_VSCREENINFO, &screen_info) &&
             !ioctl(file, FBIOGET_FSCREENINFO, &fixed_info)) {
             buflen = screen_info.yres_virtual * fixed_info.line_length;
-            buffer = mmap(NULL,
+            buffer = (char *) mmap(NULL,
                           buflen,
                           PROT_READ | PROT_WRITE,
                           MAP_SHARED,
