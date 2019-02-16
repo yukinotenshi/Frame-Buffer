@@ -4,6 +4,8 @@
 
 #include "canvas.h"
 
+Canvas* Canvas::instance = nullptr;
+
 Canvas::Canvas() {
     file = open("/dev/fb0", O_RDWR);
     if (file >= 0) {
