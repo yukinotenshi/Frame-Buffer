@@ -60,9 +60,9 @@ void Line::execute(char action) {
         p.setX(x);
         p.setY(y);
         if (action == 'c') {
-            canvas.writePoint(p, color);
+            canvas->writePoint(p, color);
         } else if (action == 'd') {
-            canvas.deletePoint(p);
+            canvas->deletePoint(p);
         }
     }
 }
