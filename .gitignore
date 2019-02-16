@@ -32,8 +32,11 @@
 *.app
 
 #Clion
-.idea/
+.idea/*
 cmake-build-debug/
+
+#Build
+Frame_Buffer
 
 #Make files
 CMakeCache.txt
