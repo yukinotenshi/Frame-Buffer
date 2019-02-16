@@ -32,6 +32,9 @@ Canvas::~Canvas() {
 
 void Canvas::writePoint(Point p, Color c) {
     long offset = p.getX() * screen_info.bits_per_pixel/8 + p.getY() * fixed_info.line_length;
+    if (offset >= ((long) buflen-3) || offset < 0) {
+        return;
+    }
     buffer[offset] = c.getR();
     buffer[offset+1] = c.getG();
     buffer[offset+2] = c.getB();
@@ -40,6 +43,9 @@ void Canvas::writePoint(Point p, Color c) {
 
 void Canvas::deletePoint(Point p) {
     long offset = p.getX() * screen_info.bits_per_pixel/8 + p.getY() * fixed_info.line_length;
+    if (offset >= ((long) buflen-3) || offset < 0) {
+        return;
+    }
     buffer[offset] = 0x00;
     buffer[offset+1] = 0x00;
     buffer[offset+2] = 0x00;
