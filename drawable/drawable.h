@@ -50,6 +50,8 @@ public:
 
     virtual void rotate(const Point& anchor, double degree) = 0;
 
+    virtual void dilate(double multiplier) = 0;
+
     const Color &getColor() const {
         return color;
     }

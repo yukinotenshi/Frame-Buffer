@@ -13,7 +13,7 @@ class Circle : public Drawable {
 private:
     Point center;
     Point prevCenter;
-    int radius;
+    double radius;
 
     std::vector<Point> generateQuadrants(Point p);
 
@@ -33,7 +33,9 @@ public:
 
     void execute(char action);
 
-    void rotate(const Point& anchor, double degree);
+    void rotate(const Point& anchor, double degree) override;
+
+    void dilate(double multipler) override;
 };
 
 

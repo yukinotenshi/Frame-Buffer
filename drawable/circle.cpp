@@ -122,3 +122,10 @@ void Circle::rotate(const Point &anchor, double degree) {
     center.setY((long) (dx * sin(currentDegree) + dy * cos(currentDegree) + anchor.getY()));
     draw();
 }
+
+void Circle::dilate(double multipler) {
+    del();
+    double scale = sqrt(multipler);
+    radius = scale * radius;
+    draw();
+}

@@ -74,8 +74,17 @@ void Polygon::rotate(const Point &anchor, double degree) {
         currentDegree += degree;
         double sin_ = sin(currentDegree);
         double cos_ = cos(currentDegree);
-        point.setX(floor(dx * cos_ - dy * sin_ + (double) anchor.getX()));
-        point.setY(floor(dx * sin_ + dy * cos_ + (double) anchor.getY()));
+        point.setX(dx * cos_ - dy * sin_ + (double) anchor.getX());
+        point.setY(dx * sin_ + dy * cos_ + (double) anchor.getY());
+    }
+    draw();
+}
+
+void Polygon::dilate(double multiplier) {
+    del();
+    for (Point& point : points) {
+        point.setX(point.getX() * multiplier);
+        point.setY(point.getY() * multiplier);
     }
     draw();
 }

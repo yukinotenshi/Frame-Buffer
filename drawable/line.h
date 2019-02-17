@@ -37,6 +37,8 @@ public:
     void move(long x, long y) override;
 
     void rotate(const Point& anchor, double degree) override;
+
+    void dilate(double multiplier) override;
 };
 
 

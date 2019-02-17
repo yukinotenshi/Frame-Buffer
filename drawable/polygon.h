@@ -29,6 +29,8 @@ public:
     void del() override;
 
     void rotate(const Point& anchor, double degree) override;
+
+    void dilate(double multiplier) override;
 };
 
 

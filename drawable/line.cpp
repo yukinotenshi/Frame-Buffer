@@ -107,3 +107,12 @@ void Line::rotate(const Point& anchor, double degree) {
 
     draw();
 }
+
+void Line::dilate(double multiplier) {
+    del();
+    from.setX(multiplier * from.getX());
+    from.setY(multiplier * from.getY());
+    to.setX(multiplier * to.getX());
+    to.setY(multiplier * to.getY());
+    draw();
+}
