@@ -8,9 +8,11 @@
 #include "drawable/circle.h"
 #include "drawable/rectangle.h"
 #include "drawable/polygon.h"
+#include "drawable/line.h"
 #include "factory/rectangle_factory.h"
 #include "factory/polygon_factory.h"
 #include "factory/circle_factory.h"
+#include "factory/line_factory.h"
 #include "core/view.h"
 #include <unistd.h>
 #include <vector>
@@ -27,6 +29,10 @@ int main() {
     std::vector<Circle> circles;
     CircleFactory circleFactory("example_files/circle.txt");
     circles = circleFactory.generate();
+
+    std::vector<Line> lines;
+    LineFactory lineFactory("example_files/line.txt");
+    lines = lineFactory.generate();
 
     Point p1, p2, p3, p4;
     View view;
@@ -56,14 +62,20 @@ int main() {
     p1.setX(500);
     p1.setY(500);
 
-    for (Rectangle& rect : rects) {
-        rect.draw();
-    }
-    for (Polygon& polygon : polygons) {
-        polygon.draw();
-    }
-    for (Circle& circle : circles) {
-        circle.draw();
+    for (int i = 0; i < 1000; i++) {
+        usleep(10000);
+        for (Rectangle& rect : rects) {
+            rect.rotate(p1, 0.01);
+        }
+        for (Polygon& polygon : polygons) {
+            polygon.rotate(p1, 0.01);
+        }
+        for (Circle& circle : circles) {
+            circle.rotate(p1, 0.01);
+        }
+        for (Line& line: lines) {
+            line.rotate(p1, 0.01);
+        }
     }
 
     return 0;
