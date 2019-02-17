@@ -95,18 +95,15 @@ void Line::rotate(const Point& anchor, double degree) {
 
     double fromdx = -anchor.getX() + from.getX();
     double fromdy = -anchor.getY() + from.getY();
+    double todx = -anchor.getX() + to.getX();
+    double tody = -anchor.getY() + to.getY();
 
     currentDegree += degree;
-    double newX = fromdx * cos(currentDegree) - fromdy * sin(currentDegree) +  anchor.getX();
-    double newY = fromdx * sin(currentDegree) + fromdy * cos(currentDegree) +  anchor.getY();
 
-    double diffX = to.getX() - from.getX();
-    double diffY = to.getY() - from.getY();
-
-    from.setX(newX);
-    from.setY(newY);
-    to.setX(to.getX() - from.getX() + diffX);
-    to.setY(to.getY() - from.getY() + diffY);
+    from.setX((int) (fromdx * cos(currentDegree) - fromdy * sin(currentDegree) +  anchor.getX()));
+    from.setY((int) (fromdx * sin(currentDegree) + fromdy * cos(currentDegree) +  anchor.getY()));
+    to.setX((int) (todx * cos(currentDegree) - tody * sin(currentDegree) + anchor.getX()));
+    to.setY((int) (todx * sin(currentDegree) + tody * cos(currentDegree) + anchor.getY()));
 
     draw();
 }
