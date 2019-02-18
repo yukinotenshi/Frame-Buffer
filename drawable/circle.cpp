@@ -44,6 +44,10 @@ std::vector<Point> Circle::generateQuadrants(Point p) {
     return points;
 }
 
+Point Circle::getCenter() {
+    return this->center;
+}
+
 void Circle::drawQuadrants(Point p) {
     std::vector<Point> points;
     points = generateQuadrants(p);

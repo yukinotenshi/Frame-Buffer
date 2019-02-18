@@ -38,18 +38,21 @@ int main() {
     View view;
     view.pushLeft(p1);
     view.pushTop(p1);
-    p2.setX(500);
+    p2.setX(600);
     view.pushTop(p2);
     view.pushRight(p2);
-    p3.setX(500);
-    p3.setY(500);
+    p3.setX(600);
+    p3.setY(600);
     view.pushRight(p3);
     view.pushBottom(p3);
-    p4.setY(500);
+    p4.setY(600);
     view.pushLeft(p4);
     view.pushBottom(p4);
 
-    /*for (Line& line : lines) {
+    //create circle bullet
+    Circle* bullet = new Circle((Point){300,270},10);
+
+    for (Line& line : lines) {
         line.setView(view);
     }
     for (Polygon& polygon : polygons) {
@@ -57,25 +60,68 @@ int main() {
     }
     for (Circle& circle : circles) {
         circle.setView(view);
-    }*/
+    }
+    for (Rectangle& rect : rects)
+    {
+        rect.setView(view);
+    }
+
+    bullet->setView(view);
 
     p1.setX(500);
     p1.setY(500);
 
-    for (int i = 0; i < 1000; i++) {
+    for (Rectangle& rect : rects) {
+        // rect.rotate(p1, 0.01);
+        rect.draw();
+    }
+    for (Polygon& polygon : polygons) {
+        // polygon.rotate(p1, 0.01);
+        polygon.draw();
+    }
+    for (Circle& circle : circles) {
+        // circle.rotate(p1, 0.01);
+        circle.draw();
+    }
+
+    double multiplier = 1.05;
+
+    for (int i = 0; i < 200; i++) {
         usleep(10000);
-        for (Rectangle& rect : rects) {
-            rect.rotate(p1, 0.01);
+        // for (Rectangle& rect : rects) {
+        //     // rect.rotate(p1, 0.01);
+        //     rect.draw();
+        // }
+        // for (Polygon& polygon : polygons) {
+        //     // polygon.rotate(p1, 0.01);
+        //     polygon.draw();
+        // }
+        // for (Circle& circle : circles) {
+        //     // circle.rotate(p1, 0.01);
+        //     circle.draw();
+        // }
+        // for (Line& line: lines) {
+        //     line.rotate(p1, 0.01);
+        //     // line.draw();
+        // }
+        while(bullet->getCenter().getX() < 450){
+            usleep(8000);
+            for (Rectangle& rect : rects) {
+            // rect.rotate(p1, 0.01);
+            rect.draw();
+            }
+            for (Polygon& polygon : polygons) {
+                // polygon.rotate(p1, 0.01);
+                polygon.draw();
+            }
+            bullet->move(1,0);
         }
         for (Polygon& polygon : polygons) {
             polygon.rotate(p1, 0.01);
+            // polygon.draw();
         }
-        for (Circle& circle : circles) {
-            circle.rotate(p1, 0.01);
-        }
-        for (Line& line: lines) {
-            line.rotate(p1, 0.01);
-        }
+
+        bullet->dilate(multiplier);
     }
 
     return 0;

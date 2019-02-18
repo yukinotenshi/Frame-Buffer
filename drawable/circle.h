@@ -25,6 +25,8 @@ public:
 
     Circle(const Point &center, int radius) : center(center), radius(radius) {}
 
+    Point getCenter();
+
     void draw() override;
 
     void move(long x, long y) override;
