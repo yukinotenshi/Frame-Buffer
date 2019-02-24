@@ -75,6 +75,7 @@ int main() {
     for (Rectangle& rect : rects) {
         // rect.rotate(p1, 0.01);
         rect.draw();
+        rect.fill();
     }
     for (Polygon& polygon : polygons) {
         // polygon.rotate(p1, 0.01);
@@ -84,6 +85,7 @@ int main() {
     for (Circle& circle : circles) {
         // circle.rotate(p1, 0.01);
         circle.draw();
+        circle.fill();
     }
 
     double multiplier = 1.05;

@@ -104,21 +104,41 @@ Point Polygon::getPointInTriangle(){
     {
         triangle.push_back(this->getPoint()[i]);
     }
-    double new_X = (triangle[0].getX()+triangle[1].getX()+triangle[2].getX())/3;
-    double new_Y = (triangle[0].getY()+triangle[1].getY()+triangle[2].getY())/3;
+    int new_X = (triangle[0].getX()+triangle[1].getX()+triangle[2].getX())/3;
+    int new_Y = (triangle[0].getY()+triangle[1].getY()+triangle[2].getY())/3;
     Point res(new_X,new_Y);
-    std::cout << new_X << " " << new_Y << std::endl;
+    // std::cout << new_X << " " << new_Y << std::endl;
     return(res);
 }
 
 bool Polygon::inBorder(Point checked){
-    for(size_t i = 0; i < this->getPoint().size(); i++)
+    for(size_t i = 0; i < this->getPoint().size()-1; i++)
     {
-        if (this->getPoint()[i].distance(checked) + this->getPrevPoint()[i].distance(checked) == this->getPrevPoint()[i].distance(this->getPrevPoint()[i]))
-        {    
+        // std::cout << this->getPoint()[i].getX() << " " << this->getPoint()[i].getY() << std::endl;
+        // std::cout << this->getPoint()[i+1].getX() << " " << this->getPoint()[i+1].getY() << std::endl;
+        // std::cout << "A : " << this->getPoint()[i].distance(checked) << std::endl;
+        // std::cout << "B : " << this->getPoint()[i+1].distance(checked) << std::endl;
+        // std::cout << "C : " << this->getPoint()[i].distance(this->getPoint()[i+1]) << std::endl;
+        double x = abs(this->getPoint()[i].distance(checked) + this->getPoint()[i+1].distance(checked) - this->getPoint()[i].distance(this->getPoint()[i+1]));
+        // std::cout << "D : " << x << std::endl;
+        //
+        //
+        // std::cout << "++++++++++++++" << std::endl;
+
+        if (abs(this->getPoint()[i].distance(checked) + this->getPoint()[i+1].distance(checked) - this->getPoint()[i].distance(this->getPoint()[i+1])) < 0.1)
+        {
+            // std::cout << "RETURN TRUE" << std::endl;
             return true;
         }
     }
+    // std::cout << this->getPoint().back().getX() << " " << this->getPoint().back().getY() << std::endl;
+    // std::cout << this->getPoint().front().getX() << " " << this->getPoint().front().getY() << std::endl;
+    // std::cout << "++++++++++++++" << std::endl;
+    if (abs(this->getPoint().back().distance(checked) + this->getPoint().front().distance(checked) - this->getPoint().back().distance(this->getPoint().front())) < 0.1) {
+      // std::cout << "RETURN TRUE" << std::endl;
+      return true;
+    }
+    // std::cout << "RETURN FALSE" << std::endl;
     return false;
 }
 
@@ -126,40 +146,51 @@ void Polygon::fill(){
     std::queue<Point> queue_point;
     std::set<Point> set_point;
     Point curr;
+    Point temp;
+    std::set<Point>::iterator it2;
+
+
     queue_point.push(this->getPointInTriangle());
     set_point.insert(queue_point.front());
+
     while(!queue_point.empty()){
         curr = queue_point.front();
         queue_point.pop();
         std::set<Point>::iterator it;
-        // if(! (this->inBorder(curr)) ){
-            this->writePoint(curr,color);
-            std::cout << curr.getX() << " " << curr.getY() << std::endl;
 
-            it = set_point.find(Point{curr.getX() + 1, curr.getY()});
-            if (it != set_point.end()) {
+        // std::cout << "Current point : " << curr.getX() << " " << curr.getY() << std::endl;
+        if(! (this->inBorder(curr)) ){
+            this->writePoint(curr,color);
+
+            temp = Point(curr.getX()+1, curr.getY());
+            it = set_point.find(temp);
+            if (it == set_point.end()) {
                 queue_point.push(Point{curr.getX() + 1, curr.getY()});
-                set_point.insert(queue_point.back());    
+                set_point.insert(queue_point.back());
+            } else {
+              Point p = *it;
             }
 
             it = set_point.find(Point{curr.getX() - 1, curr.getY()});
-            if (it != set_point.end()) {
+            if (it == set_point.end()) {
                 queue_point.push(Point{curr.getX() - 1, curr.getY()});
                 set_point.insert(queue_point.back());
             }
 
             it = set_point.find(Point{curr.getX(), curr.getY() + 1});
-            if (it != set_point.end()) {
+            if (it == set_point.end()) {
                 queue_point.push(Point{curr.getX(), curr.getY() + 1});
-                set_point.insert(queue_point.back());             
+                set_point.insert(queue_point.back());
             }
 
             it = set_point.find(Point{curr.getX(), curr.getY() - 1});
-            if (it != set_point.end()) {
+            if (it == set_point.end()) {
                 queue_point.push(Point{curr.getX(), curr.getY() - 1});
                 set_point.insert(queue_point.back());
             }
-        // }
+        } else {
+          // std::cout << "HAHAHAA" << std::endl;
+        }
     }
-    
+
 }

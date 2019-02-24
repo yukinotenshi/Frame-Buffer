@@ -28,6 +28,9 @@ public:
 
     bool operator<(const Point& p) const;
 
+    bool operator==(const Point& p) const;
+
+
     // bool operator<(const Point& p1, const Point& p2);
 
 };

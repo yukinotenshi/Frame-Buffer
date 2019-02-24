@@ -8,6 +8,8 @@
 #include "drawable.h"
 #include "../core/point.h"
 #include <vector>
+#include <set>
+#include <queue>
 
 class Circle : public Drawable {
 private:
@@ -27,6 +29,8 @@ public:
 
     Point getCenter();
 
+    double getRadius();
+
     void draw() override;
 
     void move(long x, long y) override;
@@ -40,6 +44,8 @@ public:
     void dilate(double multipler) override;
 
     void fill() override;
+
+    bool isInside(Point p);
 };
 
 
