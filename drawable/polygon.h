@@ -6,10 +6,13 @@
 #define FRAME_BUFFER_POLYGON_H
 
 #include <vector>
+#include <queue>
 #include <cstdarg>
 #include "drawable.h"
 #include "../core/point.h"
 #include "line.h"
+#include <iostream>
+#include<bits/stdc++.h>
 
 
 class Polygon : public Drawable {
@@ -22,6 +25,10 @@ public:
 
     explicit Polygon(int count, ...);
 
+    std::vector<Point> getPoint();
+
+    std::vector<Point> getPrevPoint();
+
     void draw() override;
 
     void move(long x, long y) override;
@@ -31,6 +38,12 @@ public:
     void rotate(const Point& anchor, double degree) override;
 
     void dilate(double multiplier) override;
+
+    bool inBorder(Point p);
+
+    Point getPointInTriangle();
+
+    void fill() override;
 };
 
 

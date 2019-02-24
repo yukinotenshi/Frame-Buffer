@@ -38,6 +38,8 @@ public:
     void rotate(const Point& anchor, double degree) override;
 
     void dilate(double multipler) override;
+
+    void fill() override;
 };
 
 

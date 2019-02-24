@@ -116,3 +116,5 @@ void Line::dilate(double multiplier) {
     to.setY(multiplier * to.getY());
     draw();
 }
+
+void Line::fill(){}

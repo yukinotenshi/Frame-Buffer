@@ -89,3 +89,77 @@ void Polygon::dilate(double multiplier) {
     }
     draw();
 }
+
+std::vector<Point> Polygon::getPoint(){
+    return this->points;
+}
+
+std::vector<Point> Polygon::getPrevPoint(){
+    return this->prevPoints;
+}
+
+Point Polygon::getPointInTriangle(){
+    std::vector<Point> triangle;
+    for(size_t i = 0; i < 3; i++)
+    {
+        triangle.push_back(this->getPoint()[i]);
+    }
+    double new_X = (triangle[0].getX()+triangle[1].getX()+triangle[2].getX())/3;
+    double new_Y = (triangle[0].getY()+triangle[1].getY()+triangle[2].getY())/3;
+    Point res(new_X,new_Y);
+    std::cout << new_X << " " << new_Y << std::endl;
+    return(res);
+}
+
+bool Polygon::inBorder(Point checked){
+    for(size_t i = 0; i < this->getPoint().size(); i++)
+    {
+        if (this->getPoint()[i].distance(checked) + this->getPrevPoint()[i].distance(checked) == this->getPrevPoint()[i].distance(this->getPrevPoint()[i]))
+        {    
+            return true;
+        }
+    }
+    return false;
+}
+
+void Polygon::fill(){
+    std::queue<Point> queue_point;
+    std::set<Point> set_point;
+    Point curr;
+    queue_point.push(this->getPointInTriangle());
+    set_point.insert(queue_point.front());
+    while(!queue_point.empty()){
+        curr = queue_point.front();
+        queue_point.pop();
+        std::set<Point>::iterator it;
+        // if(! (this->inBorder(curr)) ){
+            this->writePoint(curr,color);
+            std::cout << curr.getX() << " " << curr.getY() << std::endl;
+
+            it = set_point.find(Point{curr.getX() + 1, curr.getY()});
+            if (it != set_point.end()) {
+                queue_point.push(Point{curr.getX() + 1, curr.getY()});
+                set_point.insert(queue_point.back());    
+            }
+
+            it = set_point.find(Point{curr.getX() - 1, curr.getY()});
+            if (it != set_point.end()) {
+                queue_point.push(Point{curr.getX() - 1, curr.getY()});
+                set_point.insert(queue_point.back());
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() + 1});
+            if (it != set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() + 1});
+                set_point.insert(queue_point.back());             
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() - 1});
+            if (it != set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() - 1});
+                set_point.insert(queue_point.back());
+            }
+        // }
+    }
+    
+}

@@ -133,3 +133,5 @@ void Circle::dilate(double multipler) {
     radius = scale * radius;
     draw();
 }
+
+void Circle::fill(){}

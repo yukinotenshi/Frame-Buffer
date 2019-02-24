@@ -34,6 +34,8 @@ public:
 
     void del() override;
 
+    void fill() override;
+
     void move(long x, long y) override;
 
     void rotate(const Point& anchor, double degree) override;
