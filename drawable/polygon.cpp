@@ -5,14 +5,14 @@
 #include "polygon.h"
 
 
-Polygon::Polygon(const std::vector<Point>& points) {
+Polygon::Polygon(Color &color, const std::vector<Point>& points) : Drawable(color){
     for (const Point& p : points) {
         this->points.push_back(p);
         this->prevPoints.push_back(p);
     }
 }
 
-Polygon::Polygon(int count, ...) {
+Polygon::Polygon(Color &color, int count, ...) : Drawable(color) {
     va_list args;
     va_start(args, count);
     for (int i = 0; i < count; i++) {
@@ -23,7 +23,7 @@ Polygon::Polygon(int count, ...) {
 }
 
 void Polygon::draw() {
-    Line temp;
+    Line temp(this->color);
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));
@@ -37,7 +37,8 @@ void Polygon::draw() {
 }
 
 void Polygon::del() {
-    Line temp;
+    Color color(255,0,0,1);
+    Line temp(color);
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));

@@ -5,6 +5,7 @@
 #ifndef FRAME_BUFFER_COLOR_H
 #define FRAME_BUFFER_COLOR_H
 
+#include <string>
 
 class Color {
 private:
@@ -16,6 +17,8 @@ public:
     Color();
 
     Color(char r, char g, char b, char a);
+
+    Color(std::string color);
 
     char getR() const;
 

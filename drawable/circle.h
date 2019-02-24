@@ -21,9 +21,9 @@ private:
 
     void delQuadrants(Point p);
 public:
-    Circle() : Drawable(), center() {radius = 0; prevCenter = center;}
+    Circle(Color color) : Drawable(color), center() {radius = 0; prevCenter = center;}
 
-    Circle(const Point &center, int radius) : center(center), radius(radius) {}
+    Circle(Color color, const Point &center, int radius) : Drawable(color), center(center), radius(radius) {}
 
     Point getCenter();
 

@@ -11,7 +11,31 @@ Color::Color() {
     a = (char) 0xFF;
 }
 
-Color::Color(char r, char g, char b, char a) : r(r), g(g), b(b), a(a) {}
+Color::Color(char b, char g, char r, char a) : r(r), g(g), b(b), a(a) {}
+
+Color::Color(std::string color) {
+  if (color == "blue") {
+    r = (char) 0x00;
+    g = (char) 0x00;
+    b = (char) 0xFF;
+    a = (char) 0xFF;
+  } else if (color == "red") {
+    r = (char) 0xFF;
+    g = (char) 0x00;
+    b = (char) 0x00;
+    a = (char) 0xFF;
+  } else if (color == "green") {
+    r = (char) 0x00;
+    g = (char) 0xFF;
+    b = (char) 0x00;
+    a = (char) 0xFF;
+  } else {
+    r = (char) 0xFF;
+    g = (char) 0xFF;
+    b = (char) 0xFF;
+    a = (char) 0xFF;
+  }
+}
 
 char Color::getR() const {
     return r;
