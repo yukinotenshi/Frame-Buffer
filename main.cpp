@@ -49,6 +49,8 @@ int main() {
     view.pushLeft(p4);
     view.pushBottom(p4);
 
+    Circle bullet;
+    bullet.draw();
 
     for (Line& line : lines) {
         line.setView(view);
