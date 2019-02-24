@@ -51,7 +51,6 @@ int main() {
 
 
     //create circle bullet
-    Circle* bullet = new Circle((Point){300,270},10);
 
     for (Line& line : lines) {
         line.setView(view);
@@ -67,7 +66,6 @@ int main() {
         rect.setView(view);
     }
 
-    bullet->setView(view);
 
     p1.setX(500);
     p1.setY(500);

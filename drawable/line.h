@@ -18,7 +18,9 @@ private:
 public:
     Line();
 
-    Line(const Point &from, const Point &to);
+    Line(Color &color);
+
+    Line(const Point &from, const Point &to, Color &color);
 
     const Point &getFrom() const;
 

@@ -9,8 +9,10 @@ PolygonFactory::PolygonFactory(const std::string &filename) : BaseFactory(filena
 std::vector<Polygon> PolygonFactory::generate() {
     int n, x, y;
     std::vector<Polygon> polygons;
+    std::string c;
 
-    while (file >> n) {
+    while (file >> c >> n) {
+        Color color(c);
         std::vector<Point> points;
         for (int i = 0; i < n; i++) {
             file >> x >> y;
@@ -18,7 +20,7 @@ std::vector<Polygon> PolygonFactory::generate() {
             points.push_back(temp);
         }
 
-        Polygon polygon(points);
+        Polygon polygon(color, points);
         polygons.push_back(polygon);
     }
 
