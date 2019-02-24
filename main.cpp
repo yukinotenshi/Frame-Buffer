@@ -38,16 +38,17 @@ int main() {
     View view;
     view.pushLeft(p1);
     view.pushTop(p1);
-    p2.setX(600);
+    p2.setX(150);
     view.pushTop(p2);
     view.pushRight(p2);
-    p3.setX(600);
-    p3.setY(600);
+    p3.setX(150);
+    p3.setY(150);
     view.pushRight(p3);
     view.pushBottom(p3);
-    p4.setY(600);
+    p4.setY(150);
     view.pushLeft(p4);
     view.pushBottom(p4);
+
 
     //create circle bullet
     Circle* bullet = new Circle((Point){300,270},10);
