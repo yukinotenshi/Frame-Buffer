@@ -5,6 +5,7 @@
 #include "core/canvas.h"
 #include "core/color.h"
 #include "core/point.h"
+#include "drawable/dot.h"
 #include "drawable/circle.h"
 #include "drawable/rectangle.h"
 #include "drawable/polygon.h"
@@ -13,6 +14,7 @@
 #include "factory/polygon_factory.h"
 #include "factory/circle_factory.h"
 #include "factory/line_factory.h"
+#include "factory/dot_factory.h"
 #include "core/view.h"
 #include <unistd.h>
 #include <vector>
@@ -33,6 +35,10 @@ int main() {
     std::vector<Line> lines;
     LineFactory lineFactory("example_files/line.txt");
     lines = lineFactory.generate();
+
+    std::vector<Dot> dots;
+    DotFactory dotFactory("example_files/dot.txt");
+    dots = dotFactory.generate();
 
     Point p1, p2, p3, p4;
     View view;
@@ -76,6 +82,7 @@ int main() {
         for (Line& line: lines) {
             line.rotate(p1, 0.01);
         }
+
     }
 
     return 0;
