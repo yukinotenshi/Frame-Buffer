@@ -41,8 +41,9 @@ int main() {
     MenuScene scene(drawables);
     MainController controller(&scene);
     KeyboardDispatcher dispatcher(&controller);
-    std::thread thread([&controller] {controller.run();});
     std::thread thread2([&dispatcher] {dispatcher.run();});
+    usleep(100000);
+    std::thread thread([&controller] {controller.run();});
     thread.join();
 
     return 0;
