@@ -94,7 +94,8 @@ void Polygon::dilate(double multiplier) {
 }
 
 void Polygon::initEdgeTable() {
-    edgeTable = new EdgeTableTuple[canvas->getHeight()];
+    int height = canvas->getHeight();
+    edgeTable = new EdgeTableTuple[height];
     for (int i = 0; i < canvas->getHeight(); i++) 
     { 
         edgeTable[i].countEdgeBucket = 0; 
