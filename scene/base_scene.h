@@ -18,13 +18,19 @@ protected:
     bool toChild;
     std::vector<Drawable*> drawables;
 public:
-    BaseScene() : drawables() {}
+    BaseScene() : drawables() {
+        toParent = false;
+        toChild = false;
+    }
 
     BaseScene(BaseScene * scene) : drawables() {
         parentScene = scene;
     }
 
-    BaseScene(std::vector<Drawable*> drawables) : drawables(drawables) {}
+    BaseScene(std::vector<Drawable*> drawables) : drawables(drawables) {
+        toParent = false;
+        toChild = false;
+    }
 
     virtual ~BaseScene() {
         delete childScene;

@@ -17,6 +17,7 @@ public:
     void run() override {
         initscr();
         noecho();
+        cbreak();
         timeout(-1);
         while (!isStopped) {
             int c = getch();

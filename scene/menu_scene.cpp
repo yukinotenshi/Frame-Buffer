@@ -14,9 +14,6 @@ MenuScene::MenuScene(BaseScene *scene) : BaseScene(scene) {}
 MenuScene::MenuScene(std::vector<Drawable *> drawables) : BaseScene(drawables) {}
 
 void MenuScene::start() {
-    Point p(0, 0);
-    Drawable * dot = new Dot(p);
-    drawables.push_back(dot);
     for (Drawable* drawable : drawables) {
         drawable->draw();
     }
