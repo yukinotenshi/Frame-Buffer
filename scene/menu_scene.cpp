@@ -14,6 +14,11 @@ MenuScene::MenuScene(BaseScene *scene) : BaseScene(scene) {}
 MenuScene::MenuScene(std::vector<Drawable *> drawables) : BaseScene(drawables) {}
 
 void MenuScene::start() {
+    Point p1(315, 225);
+    Point p2(330, 240);
+    pointerPos = 0;
+    pointer = new Rectangle(p1, p2);
+    drawables.push_back(pointer);
     for (Drawable* drawable : drawables) {
         drawable->draw();
     }
@@ -23,23 +28,14 @@ void MenuScene::update() {}
 
 void MenuScene::onEvent(BaseEvent event) {
     char c = (char) event.value;
-    for (Drawable * drawable : drawables) {
-        if (drawable == nullptr) {
-            continue;
-        }
 
-        if (c == 'w') {
-            drawable->move(0, -1);
-        }
-        if (c == 'a') {
-            drawable->move(-1, 0);
-        }
-        if (c == 's') {
-            drawable->move(0, 1);
-        }
-        if (c == 'd') {
-            drawable->move(1, 0);
-        }
-        drawable->draw();
+    if (c == 'w' && pointerPos > 0) {
+        pointer->move(0, -42);
+        pointerPos -= 1;
     }
+    if (c == 's' && pointerPos < 5) {
+        pointer->move(0, 42);
+        pointerPos += 1;
+    }
+    pointer->draw();
 }

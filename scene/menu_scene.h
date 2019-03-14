@@ -7,8 +7,12 @@
 
 
 #include "base_scene.h"
+#include "../drawable/rectangle.h"
 
 class MenuScene : public  BaseScene {
+private:
+    Rectangle * pointer;
+    int pointerPos;
 public:
     MenuScene();
 
