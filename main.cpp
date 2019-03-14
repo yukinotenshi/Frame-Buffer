@@ -47,7 +47,7 @@ int main() {
     // thread.join();
 
     PolygonFactory polygonFactory("example_files/polygon.txt");
-    std::vector(Polygon) polygons = polygonFactory.generate();
+    std::vector<Polygon> polygons = polygonFactory.generate();
     for (Polygon& polygon : polygons) {
         polygon.draw();
     }
