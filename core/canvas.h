@@ -33,6 +33,8 @@ public:
     Color getPointColor(Point p);
     void movePoint(Point from, Point to, Color c);
     void clear();
+    int getLength();
+    int getHeight();
 };
 
 #endif //FRAME_BUFFER_CANVAS_H
