@@ -68,3 +68,7 @@ char Color::getA() const {
 void Color::setA(char a) {
     Color::a = a;
 }
+
+bool Color::operator!=(Color &c) const {
+    return (r!=c.getR() || g!=c.getG() || b!=c.getB() || a!=c.getA());
+}

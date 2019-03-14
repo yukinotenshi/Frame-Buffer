@@ -35,6 +35,8 @@ public:
     char getA() const;
 
     void setA(char a);
+
+    bool operator!=(Color &c) const;
 };
 
 

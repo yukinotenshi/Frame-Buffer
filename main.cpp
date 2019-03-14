@@ -88,43 +88,44 @@ int main() {
 
     double multiplier = 1.05;
 
-    // for (int i = 0; i < 200; i++) {
-    //     usleep(10000);
-    //     // for (Rectangle& rect : rects) {
-    //     //     // rect.rotate(p1, 0.01);
-    //     //     rect.draw();
-    //     // }
-    //     // for (Polygon& polygon : polygons) {
-    //     //     // polygon.rotate(p1, 0.01);
-    //     //     polygon.draw();
-    //     // }
-    //     // for (Circle& circle : circles) {
-    //     //     // circle.rotate(p1, 0.01);
-    //     //     circle.draw();
-    //     // }
-    //     // for (Line& line: lines) {
-    //     //     line.rotate(p1, 0.01);
-    //     //     // line.draw();
-    //     // }
-    //     while(bullet->getCenter().getX() < 450){
-    //         usleep(8000);
-    //         for (Rectangle& rect : rects) {
-    //         // rect.rotate(p1, 0.01);
-    //         rect.draw();
-    //         }
-    //         for (Polygon& polygon : polygons) {
-    //             // polygon.rotate(p1, 0.01);
-    //             polygon.draw();
-    //         }
-    //         // bullet->move(1,0);
-    //     }
-    //     // for (Polygon& polygon : polygons) {
-    //     //     polygon.rotate(p1, 0.01);
-    //     //     // polygon.draw();
-    //     // }
+    for (int i = 0; i < 200; i++) {
+        Canvas::getInstance()->clear();
+        for (Rectangle& rect : rects) {
+            // rect.rotate(p1, 0.01);
+            rect.draw();
+            rect.fill();
+        }
+        for (Polygon& polygon : polygons) {
+            // polygon.rotate(p1, 0.01);
+            polygon.draw();
+            polygon.fill();
+        }
+        for (Circle& circle : circles) {
+            // circle.rotate(p1, 0.01);
+            circle.draw();
+            circle.fill();
+        }
+        for (Line& line: lines) {
+            line.rotate(p1, 0.01);
+            // line.draw();
+        }
+        // while(bullet->getCenter().getX() < 450){
+        //     usleep(8000);
+        //     for (Rectangle& rect : rects) {
+        //     // rect.rotate(p1, 0.01);
+        //     rect.draw();
+        //     }
+        //     for (Polygon& polygon : polygons) {
+        //         // polygon.rotate(p1, 0.01);
+        //         polygon.draw();
+        //     }
+        // }
+        for (Polygon& polygon : polygons) {
+            polygon.rotate(p1, 0.01);
+            // polygon.draw();
+        }
 
-    //     bullet->dilate(multiplier);
-    // }
+    }
 
     return 0;
 }

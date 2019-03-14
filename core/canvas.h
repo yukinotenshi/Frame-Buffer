@@ -29,9 +29,11 @@ private:
 public:
     static Canvas* getInstance();
     ~Canvas();
+    Color getColorOfPoint(Point p);
     void writePoint(Point p, Color c);
     void deletePoint(Point p);
     void movePoint(Point from, Point to, Color c);
+    void clear();
 };
 
 #endif //FRAME_BUFFER_CANVAS_H
