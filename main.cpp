@@ -29,13 +29,13 @@ std::vector<Dot> drawName(std::string filename) {
 int main() {
     Point p1(50,50);
 
-    GroupFactory objFactory("example_files/group");
-    GroupObject object = objFactory.create();
+    // GroupFactory objFactory("example_files/group");
+    // GroupObject object = objFactory.create();
 
-    for (int i = 0; i < 1000; i++) {
-        usleep(10000);
-        object.rotate(p1, 0.01);
-    }
+    // for (int i = 0; i < 1000; i++) {
+    //     usleep(10000);
+    //     object.rotate(p1, 0.01);
+    // }
     std::vector<Dot> dots = drawName("example_files/listname.txt");
     for (int i = 0; i < dots.size(); i++) {
         dots[i].draw();
