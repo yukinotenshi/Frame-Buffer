@@ -94,8 +94,8 @@ void Polygon::dilate(double multiplier) {
 }
 
 void Polygon::initEdgeTable() {
-    int height = Canvas::getInstance().getHeight();
-    std::cout << height;
+    int height = canvas->getHeight();
+    cout << height;
     edgeTable = new EdgeTableTuple[height];
     for (int i = 0; i < canvas->getHeight(); i++) 
     { 
