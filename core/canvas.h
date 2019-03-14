@@ -11,7 +11,6 @@
 #include <linux/fb.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 #include "point.h"
 #include "color.h"
 
@@ -20,7 +19,7 @@ class Canvas {
 private:
     struct fb_var_screeninfo screen_info;
     struct fb_fix_screeninfo fixed_info;
-    char *buffer = NULL;
+    char *buffer = nullptr;
     size_t buflen;
     int file;
 
@@ -32,6 +31,7 @@ public:
     Color getColorOfPoint(Point p);
     void writePoint(Point p, Color c);
     void deletePoint(Point p);
+    Color getPointColor(Point p);
     void movePoint(Point from, Point to, Color c);
     void clear();
 };

@@ -42,10 +42,7 @@ public:
         currentDegree = 0.0;
     }
 
-    Drawable(Color &color) : color(color) {
-        canvas = Canvas::getInstance();
-        currentDegree = 0.0;
-    }
+    virtual ~Drawable() = default;
 
     virtual void draw() = 0;
 
