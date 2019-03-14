@@ -6,8 +6,34 @@
 #define FRAME_BUFFER_GROUP_OBJECT_H
 
 
-class group_object {
+#include "../core/point.h"
+#include "drawable.h"
+#include <vector>
 
+
+class GroupObject : Drawable {
+public:
+    std::vector<Drawable *> drawables;
+
+    GroupObject();
+
+    ~GroupObject();
+
+    GroupObject(const GroupObject& other);
+
+    GroupObject(std::vector<Drawable*> drawables);
+
+    void execute(char action);
+
+    void draw() override;
+
+    void del() override;
+
+    void move(long x, long y) override;
+
+    void rotate(const Point& anchor, double degree) override;
+
+    void dilate(double multiplier) override;
 };
 
 

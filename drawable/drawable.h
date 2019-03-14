@@ -42,6 +42,8 @@ public:
         currentDegree = 0.0;
     }
 
+    virtual ~Drawable() = default;
+
     virtual void draw() = 0;
 
     virtual void del() = 0;

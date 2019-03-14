@@ -18,4 +18,4 @@ add_executable(Frame_Buffer
         factory/polygon_factory.cpp
         core/view.cpp
         drawable/rectangle.h
-        factory/rectangle_factory.cpp drawable/dot.cpp factory/dot_factory.cpp factory/dot_factory.h)
+        factory/rectangle_factory.cpp drawable/dot.cpp factory/dot_factory.cpp factory/dot_factory.h drawable/group_object.cpp drawable/group_object.h factory/group_factory.cpp factory/group_factory.h)
