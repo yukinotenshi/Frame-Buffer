@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <vector>
 #include <thread>
+#include <iostream>
 
 std::vector<Dot> drawName(std::string filename) {
     DotFactory dotFactory(filename);
@@ -45,6 +46,9 @@ int main() {
     usleep(100000);
     std::thread thread([&controller] {controller.run();});
     thread.join();
+
+    // Canvas* canvas = Canvas::getInstance();
+    // std::cout << "height " << canvas->getHeight();
 
     return 0;
 }
