@@ -6,10 +6,13 @@
 #define FRAME_BUFFER_POLYGON_H
 
 #include <vector>
+#include <queue>
 #include <cstdarg>
 #include "drawable.h"
 #include "../core/point.h"
 #include "line.h"
+#include <iostream>
+#include<bits/stdc++.h>
 
 
 class Polygon : public Drawable {
@@ -19,25 +22,25 @@ private:
 
     const static int maxVertices = 1000;
 
-    typedef struct edgebucket  
-    { 
-        int ymax;   //max y-coordinate of edge 
-        float xofymin;  //x-coordinate of lowest edge point updated only in aet 
-        float slopeinverse; 
-    } EdgeBucket; 
-    
-    typedef struct edgetabletup 
-    { 
-        // the array will give the scanline number 
-        // The edge table (ET) with edges entries sorted  
-        // in increasing y and x of the lower end 
-        
-        int countEdgeBucket;    //no. of edgebuckets 
-        EdgeBucket buckets[maxVertices]; 
-    } EdgeTableTuple; 
+    typedef struct edgebucket
+    {
+        int ymax;   //max y-coordinate of edge
+        float xofymin;  //x-coordinate of lowest edge point updated only in aet
+        float slopeinverse;
+    } EdgeBucket;
 
-    EdgeTableTuple *edgeTable; 
-    EdgeTableTuple activeEdgeTuple; 
+    typedef struct edgetabletup
+    {
+        // the array will give the scanline number
+        // The edge table (ET) with edges entries sorted
+        // in increasing y and x of the lower end
+
+        int countEdgeBucket;    //no. of edgebuckets
+        EdgeBucket buckets[maxVertices];
+    } EdgeTableTuple;
+
+    EdgeTableTuple *edgeTable;
+    EdgeTableTuple activeEdgeTuple;
 
     void initEdgeTable();
     void sortEdges(EdgeTableTuple *ett);
@@ -52,7 +55,15 @@ private:
 public:
     explicit Polygon(const std::vector<Point>& points);
 
+    explicit Polygon(Color &color, const std::vector<Point>& points);
+
     explicit Polygon(int count, ...);
+
+    explicit Polygon(Color &color, int count, ...);
+
+    std::vector<Point> getPoint();
+
+    std::vector<Point> getPrevPoint();
 
     void draw() override;
 
@@ -63,6 +74,10 @@ public:
     void rotate(const Point& anchor, double degree) override;
 
     void dilate(double multiplier) override;
+
+    Point getPointInTriangle();
+
+    void fill() override;
 
     void scanlineFill(Color c);
 

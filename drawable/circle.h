@@ -8,6 +8,8 @@
 #include "drawable.h"
 #include "../core/point.h"
 #include <vector>
+#include <set>
+#include <queue>
 
 class Circle : public Drawable {
 private:
@@ -21,9 +23,17 @@ private:
 
     void delQuadrants(Point p);
 public:
-    Circle() : Drawable(), center() {radius = 0; prevCenter = center;}
+    Circle() : Drawable(), center() {radius=0; prevCenter = center;}
 
-    Circle(const Point &center, int radius) : center(center), radius(radius) {}
+    Circle(Color color) : Drawable(color), center() {radius = 0; prevCenter = center;}
+
+    Circle(const Point &center, int radius) : Drawable(), center(center), radius(radius) {}
+
+    Circle(Color color, const Point &center, int radius) : Drawable(color), center(center), radius(radius) {}
+
+    Point getCenter();
+
+    double getRadius();
 
     void draw() override;
 
@@ -36,6 +46,10 @@ public:
     void rotate(const Point& anchor, double degree) override;
 
     void dilate(double multipler) override;
+
+    void fill() override;
+
+    bool isInside(Point p);
 };
 
 

@@ -10,7 +10,7 @@ GroupFactory::GroupFactory(const std::string &filename) : BaseFactory(filename) 
 Polygon* GroupFactory::parsePolygon() {
     int n, x, y;
     std::vector<Point> points;
- 
+
     file >> n;
     for (int i = 0; i < n; i++) {
         file >> x >> y;
@@ -29,24 +29,24 @@ Rectangle* GroupFactory::parseRectangle() {
     Point p1(x1, y1);
     Point p2(x2, y2);
     Rectangle* temp = new Rectangle(p1, p2);
-    
+
     return temp;
 }
 
 Circle* GroupFactory::parseCircle() {
     int x1, y1, radius;
-    
+
     file >> x1 >> y1 >> radius;
     Point center(x1, y1);
     Circle* temp = new Circle(center, radius);
-    
+
     return temp;
 }
 
 Dot* GroupFactory::parseDot() {
     int x, y;
 
-    file >> x >> y; 
+    file >> x >> y;
     Point point(x, y);
     Dot* dot = new Dot(point);
 

@@ -3,16 +3,32 @@
 //
 
 #include "polygon.h"
-#include <iostream>
 
-Polygon::Polygon(const std::vector<Point>& points) {
+Polygon::Polygon(const std::vector<Point>& points) : Drawable(){
     for (const Point& p : points) {
         this->points.push_back(p);
         this->prevPoints.push_back(p);
     }
 }
 
-Polygon::Polygon(int count, ...) {
+Polygon::Polygon(Color &color, const std::vector<Point>& points) : Drawable(color){
+    for (const Point& p : points) {
+        this->points.push_back(p);
+        this->prevPoints.push_back(p);
+    }
+}
+
+Polygon::Polygon(int count, ...) : Drawable() {
+    va_list args;
+    va_start(args, count);
+    for (int i = 0; i < count; i++) {
+        this->points.push_back(va_arg(args, Point));
+        this->prevPoints.push_back(va_arg(args, Point));
+    }
+    va_end(args);
+}
+
+Polygon::Polygon(Color &color, int count, ...) : Drawable(color) {
     va_list args;
     va_start(args, count);
     for (int i = 0; i < count; i++) {
@@ -23,7 +39,7 @@ Polygon::Polygon(int count, ...) {
 }
 
 void Polygon::draw() {
-    Line temp;
+    Line temp(this->color);
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));
@@ -37,7 +53,8 @@ void Polygon::draw() {
 }
 
 void Polygon::del() {
-    Line temp;
+    Color color(255,0,0,1);
+    Line temp(color);
     for (unsigned int i = 0; i < points.size()-1; i++) {
         temp.setFrom(points.at(i));
         temp.setTo(points.at(i+1));
@@ -93,126 +110,201 @@ void Polygon::dilate(double multiplier) {
     draw();
 }
 
+std::vector<Point> Polygon::getPoint(){
+    return this->points;
+}
+
+std::vector<Point> Polygon::getPrevPoint(){
+    return this->prevPoints;
+}
+
+Point Polygon::getPointInTriangle(){
+    std::vector<Point> triangle;
+    for(size_t i = 0; i < 3; i++)
+    {
+        triangle.push_back(this->getPoint()[i]);
+    }
+    int new_X = (triangle[0].getX()+triangle[1].getX()+triangle[2].getX())/3;
+    int new_Y = (triangle[0].getY()+triangle[1].getY()+triangle[2].getY())/3;
+    Point res(new_X,new_Y);
+    return(res);
+}
+
+void Polygon::fill(){
+    std::queue<Point> queue_point;
+    std::set<Point> set_point;
+    Point curr;
+    Point temp;
+    std::set<Point>::iterator it2;
+    Color currColor;
+
+    queue_point.push(this->getPointInTriangle());
+    set_point.insert(queue_point.front());
+
+    while(!queue_point.empty()){
+        curr = queue_point.front();
+        queue_point.pop();
+        std::set<Point>::iterator it;
+        // std::cout << "Current point : " << curr.getX() << " " << curr.getY() << std::endl;
+        // if(!(this->inBorder(curr))){
+        currColor = this->canvas->getPointColor(curr);
+        if(currColor != this->color){
+
+            this->writePoint(curr,color);
+
+            temp = Point(curr.getX()+1, curr.getY());
+            it = set_point.find(temp);
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX() + 1, curr.getY()});
+                set_point.insert(queue_point.back());
+            } else {
+              Point p = *it;
+            }
+
+            it = set_point.find(Point{curr.getX() - 1, curr.getY()});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX() - 1, curr.getY()});
+                set_point.insert(queue_point.back());
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() + 1});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() + 1});
+                set_point.insert(queue_point.back());
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() - 1});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() - 1});
+                set_point.insert(queue_point.back());
+            }
+        } else {
+          // std::cout << "HAHAHAA" << std::endl;
+        }
+    }
+
+}
+
 void Polygon::initEdgeTable() {
     int height = canvas->getHeight();
     edgeTable = new EdgeTableTuple[height];
-    for (int i = 0; i < canvas->getHeight(); i++) 
-    { 
-        edgeTable[i].countEdgeBucket = 0; 
-    }   
-    activeEdgeTuple.countEdgeBucket = 0; 
+    for (int i = 0; i < canvas->getHeight(); i++)
+    {
+        edgeTable[i].countEdgeBucket = 0;
+    }
+    activeEdgeTuple.countEdgeBucket = 0;
 }
 
 void Polygon::sortEdges(EdgeTableTuple *ett) {
-    int i,j; 
-    EdgeBucket temp;  
-  
-    for (i = 1; i < ett->countEdgeBucket; i++)  
-    { 
-        temp.ymax = ett->buckets[i].ymax; 
-        temp.xofymin = ett->buckets[i].xofymin; 
-        temp.slopeinverse = ett->buckets[i].slopeinverse; 
-        j = i - 1; 
-  
-    while ((temp.xofymin < ett->buckets[j].xofymin) && (j >= 0))  
-    { 
-        ett->buckets[j + 1].ymax = ett->buckets[j].ymax; 
-        ett->buckets[j + 1].xofymin = ett->buckets[j].xofymin; 
-        ett->buckets[j + 1].slopeinverse = ett->buckets[j].slopeinverse; 
-        j = j - 1; 
-    } 
-    ett->buckets[j + 1].ymax = temp.ymax; 
-    ett->buckets[j + 1].xofymin = temp.xofymin; 
-    ett->buckets[j + 1].slopeinverse = temp.slopeinverse; 
-    } 
+    int i,j;
+    EdgeBucket temp;
+
+    for (i = 1; i < ett->countEdgeBucket; i++)
+    {
+        temp.ymax = ett->buckets[i].ymax;
+        temp.xofymin = ett->buckets[i].xofymin;
+        temp.slopeinverse = ett->buckets[i].slopeinverse;
+        j = i - 1;
+
+    while ((temp.xofymin < ett->buckets[j].xofymin) && (j >= 0))
+    {
+        ett->buckets[j + 1].ymax = ett->buckets[j].ymax;
+        ett->buckets[j + 1].xofymin = ett->buckets[j].xofymin;
+        ett->buckets[j + 1].slopeinverse = ett->buckets[j].slopeinverse;
+        j = j - 1;
+    }
+    ett->buckets[j + 1].ymax = temp.ymax;
+    ett->buckets[j + 1].xofymin = temp.xofymin;
+    ett->buckets[j + 1].slopeinverse = temp.slopeinverse;
+    }
 }
 
-void Polygon::storeEdgeInTuple (EdgeTableTuple *receiver,int ym,int xm,float slopInv) { 
-    // both used for edgetable and active edge table.. 
-    // The edge tuple sorted in increasing ymax and x of the lower end. 
-    (receiver->buckets[(receiver)->countEdgeBucket]).ymax = ym; 
-    (receiver->buckets[(receiver)->countEdgeBucket]).xofymin = (float)xm; 
-    (receiver->buckets[(receiver)->countEdgeBucket]).slopeinverse = slopInv; 
-              
-    // sort the buckets 
-    sortEdges(receiver); 
-          
-    (receiver->countEdgeBucket)++;  
-       
-} 
+void Polygon::storeEdgeInTuple (EdgeTableTuple *receiver,int ym,int xm,float slopInv) {
+    // both used for edgetable and active edge table..
+    // The edge tuple sorted in increasing ymax and x of the lower end.
+    (receiver->buckets[(receiver)->countEdgeBucket]).ymax = ym;
+    (receiver->buckets[(receiver)->countEdgeBucket]).xofymin = (float)xm;
+    (receiver->buckets[(receiver)->countEdgeBucket]).slopeinverse = slopInv;
 
-void Polygon::storeEdgeInTable (int x1,int y1, int x2, int y2) { 
-    float m,minv; 
-    int ymaxTS,xwithyminTS, scanline; //ts stands for to store 
-      
-    if (x2==x1) 
-    { 
-        minv=0.000000; 
-    } 
+    // sort the buckets
+    sortEdges(receiver);
+
+    (receiver->countEdgeBucket)++;
+
+}
+
+void Polygon::storeEdgeInTable (int x1,int y1, int x2, int y2) {
+    float m,minv;
+    int ymaxTS,xwithyminTS, scanline; //ts stands for to store
+
+    if (x2==x1)
+    {
+        minv=0.000000;
+    }
     else
-    { 
-    m = ((float)(y2-y1))/((float)(x2-x1)); 
-      
-    // horizontal lines are not stored in edge table 
-    if (y2==y1) 
-        return; 
-          
-    minv = (float)1.0/m; 
-    } 
-      
-    if (y1>y2) 
-    { 
-        scanline=y2; 
-        ymaxTS=y1; 
-        xwithyminTS=x2; 
-    } 
+    {
+    m = ((float)(y2-y1))/((float)(x2-x1));
+
+    // horizontal lines are not stored in edge table
+    if (y2==y1)
+        return;
+
+    minv = (float)1.0/m;
+    }
+
+    if (y1>y2)
+    {
+        scanline=y2;
+        ymaxTS=y1;
+        xwithyminTS=x2;
+    }
     else
-    { 
-        scanline=y1; 
-        ymaxTS=y2; 
-        xwithyminTS=x1;      
-    } 
-    // the assignment part is done..now storage.. 
-    storeEdgeInTuple(&edgeTable[scanline],ymaxTS,xwithyminTS,minv);    
-} 
+    {
+        scanline=y1;
+        ymaxTS=y2;
+        xwithyminTS=x1;
+    }
+    // the assignment part is done..now storage..
+    storeEdgeInTuple(&edgeTable[scanline],ymaxTS,xwithyminTS,minv);
+}
 
 void Polygon::storeAllEdgeInTable() {
     for (unsigned int i = 0; i < points.size()-1; i++) {
         storeEdgeInTable(
-            points.at(i).getX(), 
-            points.at(i).getY(), 
-            points.at(i+1).getX(), 
+            points.at(i).getX(),
+            points.at(i).getY(),
+            points.at(i+1).getX(),
             points.at(i+1).getY()
         );
     }
 }
 
-void Polygon::removeEdgeByYmax(EdgeTableTuple *Tup,int yy) { 
-    int i,j; 
-    for (i=0; i< Tup->countEdgeBucket; i++) 
-    { 
-        if (Tup->buckets[i].ymax == yy) 
-        {               
-            for ( j = i ; j < Tup->countEdgeBucket -1 ; j++ ) 
-            { 
-                Tup->buckets[j].ymax =Tup->buckets[j+1].ymax; 
-                Tup->buckets[j].xofymin =Tup->buckets[j+1].xofymin; 
-                Tup->buckets[j].slopeinverse = Tup->buckets[j+1].slopeinverse; 
-            } 
-            Tup->countEdgeBucket--; 
-            i--; 
-        } 
-    } 
-}   
+void Polygon::removeEdgeByYmax(EdgeTableTuple *Tup,int yy) {
+    int i,j;
+    for (i=0; i< Tup->countEdgeBucket; i++)
+    {
+        if (Tup->buckets[i].ymax == yy)
+        {
+            for ( j = i ; j < Tup->countEdgeBucket -1 ; j++ )
+            {
+                Tup->buckets[j].ymax =Tup->buckets[j+1].ymax;
+                Tup->buckets[j].xofymin =Tup->buckets[j+1].xofymin;
+                Tup->buckets[j].slopeinverse = Tup->buckets[j+1].slopeinverse;
+            }
+            Tup->countEdgeBucket--;
+            i--;
+        }
+    }
+}
 
-void Polygon::updatexbyslopeinv(EdgeTableTuple *Tup) 
-{ 
-    int i; 
-      
-    for (i=0; i<Tup->countEdgeBucket; i++) 
-    { 
-        (Tup->buckets[i]).xofymin =(Tup->buckets[i]).xofymin + (Tup->buckets[i]).slopeinverse; 
-    } 
+void Polygon::updatexbyslopeinv(EdgeTableTuple *Tup)
+{
+    int i;
+
+    for (i=0; i<Tup->countEdgeBucket; i++)
+    {
+        (Tup->buckets[i]).xofymin =(Tup->buckets[i]).xofymin + (Tup->buckets[i]).slopeinverse;
+    }
 }
 
 void Polygon::scanlineFill(Color c)
@@ -258,10 +350,10 @@ void Polygon::scanlineFill(Color c)
                 ymax1 = activeEdgeTuple.buckets[j].ymax;
                 if (x1 == x2)
                 {
-                    /* three cases can arrive- 
-                    1. lines are towards top of the intersection 
-                    2. lines are towards bottom 
-                    3. one line is towards top and other is towards bottom 
+                    /* three cases can arrive-
+                    1. lines are towards top of the intersection
+                    2. lines are towards bottom
+                    3. one line is towards top and other is towards bottom
                 */
                     if (((x1 == ymax1) && (x2 != ymax2)) || ((x1 != ymax1) && (x2 == ymax2)))
                     {
@@ -290,10 +382,10 @@ void Polygon::scanlineFill(Color c)
                 // checking for intersection...
                 if (x1 == x2)
                 {
-                    /*three cases can arive- 
-                    1. lines are towards top of the intersection 
-                    2. lines are towards bottom 
-                    3. one line is towards top and other is towards bottom 
+                    /*three cases can arive-
+                    1. lines are towards top of the intersection
+                    2. lines are towards bottom
+                    3. one line is towards top and other is towards bottom
                 */
                     if (((x1 == ymax1) && (x2 != ymax2)) || ((x1 != ymax1) && (x2 == ymax2)))
                     {

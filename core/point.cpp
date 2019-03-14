@@ -26,3 +26,23 @@ double Point::getY() const {
 void Point::setY(double y) {
     Point::y = y;
 }
+
+double Point::distance(Point p){
+    return(sqrt( pow(this->x - p.getX(),2) + pow(this->y - p.getY(),2) ));
+}
+
+bool Point::operator<(const Point& p) const{
+
+    return(
+      (this->getX() < p.getX())
+     || (this->getX() == p.getX() && this->getY() < p.getY())
+   );
+}
+
+bool Point::operator==(const Point& p) const{
+    return(this->getX() == p.getX() && this->getY() == p.getY());
+}
+
+// bool Point::operator<(const Point& p1, const Point& p2){
+//     return(p1.getX() < p2.getX() && p1.getY() < p2.getY() );
+// }

@@ -13,6 +13,8 @@ void Dot::execute(char action) {
         this->writePoint(point, color);
     } else if (action == 'd') {
         this->deletePoint(point);
+    } else if (action == 'f') {
+        this->writePoint(point, color);
     }
 }
 
@@ -22,6 +24,10 @@ void Dot::draw() {
 
 void Dot::del() {
     execute('d');
+}
+
+void Dot::fill() {
+    execute('f');
 }
 
 void Dot::move(long x, long y) {

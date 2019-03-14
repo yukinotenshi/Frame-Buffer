@@ -24,6 +24,8 @@ public:
     }
 
     Rectangle(const Point& p1, const Point& p2) : Polygon(generatePoint(p1, p2)) {};
+
+    Rectangle(Color color, const Point& p1, const Point& p2) : Polygon(color, generatePoint(p1, p2)) {};
 };
 
 

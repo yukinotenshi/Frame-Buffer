@@ -44,6 +44,14 @@ std::vector<Point> Circle::generateQuadrants(Point p) {
     return points;
 }
 
+Point Circle::getCenter() {
+    return this->center;
+}
+
+double Circle::getRadius() {
+  return this->radius;
+}
+
 void Circle::drawQuadrants(Point p) {
     std::vector<Point> points;
     points = generateQuadrants(p);
@@ -128,4 +136,63 @@ void Circle::dilate(double multipler) {
     double scale = sqrt(multipler);
     radius = scale * radius;
     draw();
+}
+
+void Circle::fill(){
+    std::queue<Point> queue_point;
+    std::set<Point> set_point;
+    Point curr;
+    Point temp;
+    std::set<Point>::iterator it2;
+
+
+    queue_point.push(this->getCenter());
+    set_point.insert(queue_point.front());
+
+    while(!queue_point.empty()){
+        curr = queue_point.front();
+        queue_point.pop();
+        std::set<Point>::iterator it;
+
+        if(this->isInside(curr)){
+            this->writePoint(curr,color);
+
+            temp = Point(curr.getX()+1, curr.getY());
+            it = set_point.find(temp);
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX() + 1, curr.getY()});
+                set_point.insert(queue_point.back());
+            } else {
+              Point p = *it;
+            }
+
+            it = set_point.find(Point{curr.getX() - 1, curr.getY()});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX() - 1, curr.getY()});
+                set_point.insert(queue_point.back());
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() + 1});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() + 1});
+                set_point.insert(queue_point.back());
+            }
+
+            it = set_point.find(Point{curr.getX(), curr.getY() - 1});
+            if (it == set_point.end()) {
+                queue_point.push(Point{curr.getX(), curr.getY() - 1});
+                set_point.insert(queue_point.back());
+            }
+        } else {
+          // std::cout << "HAHAHAA" << std::endl;
+        }
+    }
+}
+
+bool Circle::isInside(Point p) {
+  if (this->getCenter().distance(p) < this->getRadius()) {
+    return true;
+  } else {
+    return false;
+  }
 }

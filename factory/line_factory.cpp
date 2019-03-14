@@ -9,11 +9,13 @@ LineFactory::LineFactory(std::string filename) : BaseFactory(filename) {}
 std::vector<Line> LineFactory::generate() {
     int x1, y1, x2, y2;
     std::vector<Line> lines;
+    std::string c;
 
-    while (file >> x1 >> y1 >> x2 >> y2) {
+    while (file >> c >>  x1 >> y1 >> x2 >> y2) {
         Point from(x1, y1);
         Point to(x2, y2);
-        Line temp(from, to);
+        Color color(c);
+        Line temp(from, to, color);
         lines.push_back(temp);
     }
 

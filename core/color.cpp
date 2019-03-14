@@ -13,6 +13,30 @@ Color::Color() {
 
 Color::Color(char r, char g, char b, char a) : r(r), g(g), b(b), a(a) {}
 
+Color::Color(std::string color) {
+  if (color == "blue") {
+    r = (char) 0x00;
+    g = (char) 0x00;
+    b = (char) 0xFF;
+    a = (char) 0xFF;
+  } else if (color == "red") {
+    r = (char) 0xFF;
+    g = (char) 0x00;
+    b = (char) 0x00;
+    a = (char) 0xFF;
+  } else if (color == "green") {
+    r = (char) 0x00;
+    g = (char) 0xFF;
+    b = (char) 0x00;
+    a = (char) 0xFF;
+  } else {
+    r = (char) 0xFF;
+    g = (char) 0xFF;
+    b = (char) 0xFF;
+    a = (char) 0xFF;
+  }
+}
+
 char Color::getR() const {
     return r;
 }
@@ -43,4 +67,8 @@ char Color::getA() const {
 
 void Color::setA(char a) {
     Color::a = a;
+}
+
+bool Color::operator!=(Color &c) const {
+    return (r!=c.getR() || g!=c.getG() || b!=c.getB() || a!=c.getA());
 }

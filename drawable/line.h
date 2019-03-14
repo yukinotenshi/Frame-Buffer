@@ -18,7 +18,11 @@ private:
 public:
     Line();
 
+    Line(Color &color);
+
     Line(const Point &from, const Point &to);
+
+    Line(const Point &from, const Point &to, Color &color);
 
     const Point &getFrom() const;
 
@@ -33,6 +37,8 @@ public:
     void draw() override;
 
     void del() override;
+
+    void fill() override;
 
     void move(long x, long y) override;
 

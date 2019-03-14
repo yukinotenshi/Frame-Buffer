@@ -7,6 +7,8 @@
 #include "../factory/group_factory.h"
 #include "../drawable/group_object.h"
 #include "first_scene.h"
+#include "fifth_scene.h"
+#include "sixth_scene.h"
 #include "second_scene.h"
 #include "third_scene.h"
 #include "fourth_scene.h"
@@ -70,10 +72,18 @@ void MenuScene::changeScene() {
             childScene = new FourthScene(this);
             next();
             break;
-        case 5:
-            childScene = new SeventhScene(this);
+        case 4:
+            childScene = new FifthScene(this);
             next();
-            break;    
+            break;
+        case 5:
+            childScene = new SixthScene(this);
+            next();
+            break;
+        // case 5:
+        //     childScene = new SeventhScene(this);
+        //     next();
+        //     break;
         default:
             break;
     }

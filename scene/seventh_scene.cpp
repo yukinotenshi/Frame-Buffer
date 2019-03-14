@@ -26,4 +26,3 @@ void SeventhScene::start() {
 void SeventhScene::update() {}
 
 void SeventhScene::onEvent(BaseEvent event) {}
-
