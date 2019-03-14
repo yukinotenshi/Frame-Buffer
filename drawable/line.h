@@ -20,6 +20,8 @@ public:
 
     Line(Color &color);
 
+    Line(const Point &from, const Point &to);
+
     Line(const Point &from, const Point &to, Color &color);
 
     const Point &getFrom() const;

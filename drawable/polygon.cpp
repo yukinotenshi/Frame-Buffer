@@ -4,8 +4,15 @@
 
 #include "polygon.h"
 
+Polygon::Polygon(const std::vector<Point>& points) : Drawable(color){
+    for (const Point& p : points) {
+        this->points.push_back(p);
+        this->prevPoints.push_back(p);
+    }
+}
 
 Polygon::Polygon(Color &color, const std::vector<Point>& points) : Drawable(color){
+    this->color = color; 
     for (const Point& p : points) {
         this->points.push_back(p);
         this->prevPoints.push_back(p);

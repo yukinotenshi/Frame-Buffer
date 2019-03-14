@@ -22,6 +22,8 @@ void GroupObject::execute(char action) {
             drawable->draw();
         } else if (action == 'd') {
             drawable->del();
+        } else if (action == 'f') {
+            drawable->fill();
         }
     }
 }
@@ -32,6 +34,10 @@ void GroupObject::draw() {
 
 void GroupObject::del() {
     execute('d');
+}
+
+void GroupObject::fill() {
+    execute('f');
 }
 
 void GroupObject::move(long x, long y) {

@@ -21,6 +21,8 @@ private:
     std::vector<Point> prevPoints;
 
 public:
+    explicit Polygon(const std::vector<Point>& points);
+
     explicit Polygon(Color &color, const std::vector<Point>& points);
 
     explicit Polygon(Color &color, int count, ...);
