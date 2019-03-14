@@ -49,6 +49,7 @@ public:
             return;
         }
         if (event.value == 27) {
+
             currentScene->back();
             return;
         }
