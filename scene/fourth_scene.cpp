@@ -47,7 +47,6 @@ void FourthScene::update() {
         object[2]->move(0,5);
         object[0]->move(5,0);
         object[1]->rotate(Point{400,600}, -0.05);
-        usleep(50000);
         object[3]->draw();
     }
     circ.dilate(-2.2);

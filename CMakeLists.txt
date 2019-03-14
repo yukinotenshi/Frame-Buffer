@@ -30,6 +30,7 @@ add_executable(Frame_Buffer
         scene/second_scene.cpp scene/second_scene.h
         scene/third_scene.cpp scene/third_scene.h
         scene/fourth_scene.cpp scene/fourth_scene.h
+        scene/seventh_scene.cpp scene/seventh_scene.h
         )
 
 target_link_libraries(Frame_Buffer ${CURSES_LIBRARIES})
