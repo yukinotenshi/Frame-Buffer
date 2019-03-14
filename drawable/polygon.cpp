@@ -3,7 +3,7 @@
 //
 
 #include "polygon.h"
-
+#include <iostream>
 
 Polygon::Polygon(const std::vector<Point>& points) {
     for (const Point& p : points) {
@@ -94,7 +94,8 @@ void Polygon::dilate(double multiplier) {
 }
 
 void Polygon::initEdgeTable() {
-    int height = canvas->getHeight();
+    int height = Canvas::getInstance().getHeight();
+    std::cout << height;
     edgeTable = new EdgeTableTuple[height];
     for (int i = 0; i < canvas->getHeight(); i++) 
     { 
