@@ -25,6 +25,11 @@
 #include <vector>
 #include <thread>
 
+std::vector<Dot> drawName(std::string filename) {
+    DotFactory dotFactory(filename);
+    return dotFactory.generate();
+}
+
 int main() {
     GroupFactory objFactory("example_files/group");
     GroupObject object = objFactory.create();
