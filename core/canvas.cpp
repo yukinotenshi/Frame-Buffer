@@ -86,7 +86,7 @@ void Canvas::movePoint(Point from, Point to, Color c) {
 }
 
 void Canvas::clear() {
-    for (long i = 0; i < (long) buflen-3; i++) {
-      this->buffer[i] = 0x00;
+    for (int i = 0; i < buflen; i++) {
+        buffer[i] = 0x0;
     }
 }

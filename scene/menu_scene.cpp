@@ -6,6 +6,7 @@
 #include "../drawable/dot.h"
 #include "../factory/group_factory.h"
 #include "../drawable/group_object.h"
+#include "first_scene.h"
 
 MenuScene::MenuScene() : BaseScene() {}
 
@@ -14,6 +15,13 @@ MenuScene::MenuScene(BaseScene *scene) : BaseScene(scene) {}
 MenuScene::MenuScene(std::vector<Drawable *> drawables) : BaseScene(drawables) {}
 
 void MenuScene::start() {
+    if (pointer == nullptr) {
+        Point p1(315, 225);
+        Point p2(330, 240);
+        pointerPos = 0;
+        pointer = new Rectangle(p1, p2);
+        drawables.push_back(pointer);
+    }
     for (Drawable* drawable : drawables) {
         drawable->draw();
     }
@@ -23,23 +31,30 @@ void MenuScene::update() {}
 
 void MenuScene::onEvent(BaseEvent event) {
     char c = (char) event.value;
-    for (Drawable * drawable : drawables) {
-        if (drawable == nullptr) {
-            continue;
-        }
 
-        if (c == 'w') {
-            drawable->move(0, -1);
-        }
-        if (c == 'a') {
-            drawable->move(-1, 0);
-        }
-        if (c == 's') {
-            drawable->move(0, 1);
-        }
-        if (c == 'd') {
-            drawable->move(1, 0);
-        }
-        drawable->draw();
+    if (c == 'w' && pointerPos > 0) {
+        pointer->move(0, -42);
+        pointerPos -= 1;
+    }
+    if (c == 's' && pointerPos < 5) {
+        pointer->move(0, 42);
+        pointerPos += 1;
+    }
+    if (c == (char) 10) {
+        changeScene();
+        return;
+    }
+
+    pointer->draw();
+}
+
+void MenuScene::changeScene() {
+    switch (pointerPos) {
+        case 0:
+            childScene = new FirstScene(this);
+            next();
+            break;
+        default:
+            break;
     }
 }

@@ -19,15 +19,23 @@ protected:
     std::vector<Drawable*> drawables;
 public:
     BaseScene() : drawables() {
+        childScene = nullptr;
+        parentScene = nullptr;
         toParent = false;
         toChild = false;
     }
 
     BaseScene(BaseScene * scene) : drawables() {
+        childScene = nullptr;
+        parentScene = nullptr;
+        toParent = false;
+        toChild = false;
         parentScene = scene;
     }
 
     BaseScene(std::vector<Drawable*> drawables) : drawables(drawables) {
+        childScene = nullptr;
+        parentScene = nullptr;
         toParent = false;
         toChild = false;
     }
@@ -40,11 +48,21 @@ public:
     }
 
     void next() {
+        if (childScene == nullptr) {
+            return;
+        }
+        Canvas * canvas = Canvas::getInstance();
+        canvas->clear();
         toChild = true;
         toParent = false;
     }
 
     void back() {
+        if (parentScene == nullptr) {
+            return;
+        }
+        Canvas * canvas = Canvas::getInstance();
+        canvas->clear();
         toChild = false;
         toParent = true;
     }
