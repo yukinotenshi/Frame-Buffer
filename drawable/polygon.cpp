@@ -134,7 +134,7 @@ void Polygon::storeEdgeInTuple (EdgeTableTuple *receiver,int ym,int xm,float slo
     (receiver->buckets[(receiver)->countEdgeBucket]).slopeinverse = slopInv; 
               
     // sort the buckets 
-    insertionSort(receiver); 
+    sortEdges(receiver); 
           
     (receiver->countEdgeBucket)++;  
        
@@ -182,7 +182,7 @@ void Polygon::storeAllEdgeInTable() {
             points.at(i).getY(), 
             points.at(i+1).getX(), 
             points.at(i+1).getY()
-        )
+        );
     }
 }
 
@@ -228,19 +228,17 @@ void Polygon::scanlineFill(Color c)
         // AET those edges whose ymin = y (entering edges)
         for (j = 0; j < edgeTable[i].countEdgeBucket; j++)
         {
-            storeEdgeInTuple(&activeEdgeTuple, edgeTable[i].buckets[j].ymax, EdgeTable[i].buckets[j].xofymin,
+            storeEdgeInTuple(&activeEdgeTuple, edgeTable[i].buckets[j].ymax, edgeTable[i].buckets[j].xofymin,
                              edgeTable[i].buckets[j].slopeinverse);
         }
-        printTuple(&activeEdgeTuple);
 
         // 2. Remove from AET those edges for
         // which y=ymax (not involved in next scan line)
         removeEdgeByYmax(&activeEdgeTuple, i);
 
         //sort AET (remember: ET is presorted)
-        insertionSort(&activeEdgeTuple);
+        sortEdges(&activeEdgeTuple);
 
-        printTuple(&activeEdgeTuple);
 
         //3. Fill lines on scan line y by using pairs of x-coords from AET
         j = 0;
