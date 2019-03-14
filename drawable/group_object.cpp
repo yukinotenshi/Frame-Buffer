@@ -3,6 +3,7 @@
 //
 
 #include "group_object.h"
+#include <iostream>
 
 GroupObject::GroupObject() : Drawable(), drawables() {}
 
@@ -51,3 +52,10 @@ void GroupObject::dilate(double multiplier) {
         drawable->dilate(multiplier);
     }
 }
+
+// GroupObject& GroupObject::operator=(const GroupObject& other) {
+//     this->drawables = other.drawables;
+//     // for (Drawable* drawable : other.drawables)
+//     return *this;
+// }
+

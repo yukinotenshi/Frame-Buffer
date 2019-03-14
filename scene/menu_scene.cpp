@@ -9,6 +9,7 @@
 #include "first_scene.h"
 #include "second_scene.h"
 #include "third_scene.h"
+#include "fourth_scene.h"
 
 MenuScene::MenuScene() : BaseScene() {}
 
@@ -62,6 +63,10 @@ void MenuScene::changeScene() {
             break;
         case 2:
             childScene = new ThirdScene(this);
+            next();
+            break;
+        case 3:
+            childScene = new FourthScene(this);
             next();
             break;    
         default:

@@ -3,6 +3,7 @@
 //
 
 #include "group_factory.h"
+#include <iostream>
 
 GroupFactory::GroupFactory(const std::string &filename) : BaseFactory(filename) {}
 
@@ -80,6 +81,10 @@ std::vector<Drawable*> GroupFactory::generate() {
             drawables.push_back(parseLine());
         }
     }
+
+    // for (Drawable * drawable : drawables) {
+    //     drawable->draw();
+    // }
 
     return drawables;
 }

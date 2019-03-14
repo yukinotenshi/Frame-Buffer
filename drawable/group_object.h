@@ -34,6 +34,8 @@ public:
     void rotate(const Point& anchor, double degree) override;
 
     void dilate(double multiplier) override;
+
+    // GroupObject& operator=(const GroupObject& other);
 };
 
 
