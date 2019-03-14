@@ -218,6 +218,7 @@ void Polygon::scanlineFill(Color c)
 {
     int i, j, x1, ymax1, x2, ymax2, FillFlag = 0, coordCount;
 
+    initEdgeTable();
     storeAllEdgeInTable();
     // we will start from scanline 0;
     // Repeat until last scanline:
