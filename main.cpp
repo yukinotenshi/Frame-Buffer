@@ -50,6 +50,8 @@ int main() {
     std::vector<Polygon> polygons = polygonFactory.generate();
     for (Polygon& polygon : polygons) {
         polygon.draw();
+        Color c(200,123,50,1);
+        polygon.scanlineFill(c);
     }
 
     return 0;
