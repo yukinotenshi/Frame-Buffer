@@ -25,6 +25,7 @@ add_executable(Frame_Buffer
         factory/polygon_factory.cpp
         core/view.cpp
         drawable/rectangle.h
-        factory/rectangle_factory.cpp drawable/dot.cpp factory/dot_factory.cpp factory/dot_factory.h drawable/group_object.cpp drawable/group_object.h factory/group_factory.cpp factory/group_factory.h scene/base_scene.h event/base_event.h scene/menu_scene.cpp scene/menu_scene.h event/keyboard_event.h event_dispatcher/base_dispatcher.h controller/main_controller.h event_dispatcher/keyboard_dispatcher.cpp event_dispatcher/keyboard_dispatcher.h scene/first_scene.cpp scene/first_scene.h)
+        factory/rectangle_factory.cpp drawable/dot.cpp factory/dot_factory.cpp factory/dot_factory.h drawable/group_object.cpp drawable/group_object.h factory/group_factory.cpp factory/group_factory.h scene/base_scene.h event/base_event.h scene/menu_scene.cpp scene/menu_scene.h event/keyboard_event.h event_dispatcher/base_dispatcher.h controller/main_controller.h event_dispatcher/keyboard_dispatcher.cpp event_dispatcher/keyboard_dispatcher.h scene/first_scene.cpp scene/first_scene.h
+        scene/sixth_scene.cpp scene/sixth_scene.h)
 
 target_link_libraries(Frame_Buffer ${CURSES_LIBRARIES})

@@ -149,7 +149,7 @@ void Polygon::fill(){
     Point curr;
     Point temp;
     std::set<Point>::iterator it2;
-
+    Color currColor;
 
     queue_point.push(this->getPointInTriangle());
     set_point.insert(queue_point.front());
@@ -159,7 +159,9 @@ void Polygon::fill(){
         queue_point.pop();
         std::set<Point>::iterator it;
         // std::cout << "Current point : " << curr.getX() << " " << curr.getY() << std::endl;
-        if(!(this->inBorder(curr))){
+        // if(!(this->inBorder(curr))){
+        currColor = this->canvas->getPointColor(curr);
+        if(currColor != this->color){
 
             this->writePoint(curr,color);
 

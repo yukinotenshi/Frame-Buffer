@@ -28,7 +28,6 @@ private:
 public:
     static Canvas* getInstance();
     ~Canvas();
-    Color getColorOfPoint(Point p);
     void writePoint(Point p, Color c);
     void deletePoint(Point p);
     Color getPointColor(Point p);
