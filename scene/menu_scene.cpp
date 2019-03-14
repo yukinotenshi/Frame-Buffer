@@ -8,6 +8,7 @@
 #include "../drawable/group_object.h"
 #include "first_scene.h"
 #include "second_scene.h"
+#include "third_scene.h"
 
 MenuScene::MenuScene() : BaseScene() {}
 
@@ -59,6 +60,10 @@ void MenuScene::changeScene() {
             childScene = new SecondScene(this);
             next();
             break;
+        case 2:
+            childScene = new ThirdScene(this);
+            next();
+            break;    
         default:
             break;
     }

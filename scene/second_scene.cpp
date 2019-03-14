@@ -3,7 +3,6 @@
 //
 
 #include "second_scene.h"
-#include "../drawable/line.h"
 #include "../factory/line_factory.h"
 #include <iostream>
 
