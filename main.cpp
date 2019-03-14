@@ -21,6 +21,11 @@
 #include <unistd.h>
 #include <vector>
 
+std::vector<Dot> drawName(std::string filename) {
+    DotFactory dotFactory(filename);
+    return dotFactory.generate();
+}
+
 int main() {
     Point p1(50,50);
 
@@ -31,6 +36,9 @@ int main() {
         usleep(10000);
         object.rotate(p1, 0.01);
     }
-
+    std::vector<Dot> dots = drawName("example_files/listname.txt");
+    for (int i = 0; i < dots.size(); i++) {
+        dots[i].draw();
+    }
     return 0;
 }
