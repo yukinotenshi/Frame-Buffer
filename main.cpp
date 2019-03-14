@@ -47,16 +47,16 @@ int main() {
     // std::thread thread([&controller] {controller.run();});
     // thread.join();
 
-    // PolygonFactory polygonFactory("example_files/polygon.txt");
-    // std::vector<Polygon> polygons = polygonFactory.generate();
-    // for (Polygon& polygon : polygons) {
-    //     polygon.draw();
-    //     Color c(200,123,50,1);
-    //     polygon.scanlineFill(c);
-    // }
+    PolygonFactory polygonFactory("example_files/polygon.txt");
+    std::vector<Polygon> polygons = polygonFactory.generate();
+    for (Polygon& polygon : polygons) {
+        polygon.draw();
+        Color c(200,123,50,1);
+        polygon.scanlineFill(c);
+    }
 
-    Canvas* canvas = Canvas::getInstance();
-    std::cout << "height " << canvas->getHeight();
+    // Canvas* canvas = Canvas::getInstance();
+    // std::cout << "height " << canvas->getHeight();
 
     return 0;
 }

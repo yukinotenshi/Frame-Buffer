@@ -17,7 +17,7 @@ private:
     std::vector<Point> points;
     std::vector<Point> prevPoints;
 
-    const static int maxVertices = 10000;
+    const static int maxVertices = 1000;
 
     typedef struct edgebucket  
     { 

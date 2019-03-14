@@ -334,4 +334,6 @@ void Polygon::scanlineFill(Color c)
         // 5. For each nonvertical edge remaining in AET, update x for new y
         updatexbyslopeinv(&activeEdgeTuple);
     }
+
+    delete[] edgeTable;
 }
