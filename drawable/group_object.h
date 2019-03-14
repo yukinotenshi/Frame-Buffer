@@ -11,7 +11,7 @@
 #include <vector>
 
 
-class GroupObject : Drawable {
+class GroupObject : public Drawable {
 public:
     std::vector<Drawable *> drawables;
 

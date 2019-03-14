@@ -3,7 +3,6 @@
 //
 
 #include "group_factory.h"
-#include <iostream>
 
 GroupFactory::GroupFactory(const std::string &filename) : BaseFactory(filename) {}
 

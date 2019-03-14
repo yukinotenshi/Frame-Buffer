@@ -18,19 +18,28 @@
 #include "factory/dot_factory.h"
 #include "factory/group_factory.h"
 #include "core/view.h"
+#include "scene/menu_scene.h"
+#include "controller/main_controller.h"
+#include "event_dispatcher/keyboard_dispatcher.h"
 #include <unistd.h>
 #include <vector>
+#include <thread>
 
 int main() {
-    Point p1(50,50);
-
     GroupFactory objFactory("example_files/group");
     GroupObject object = objFactory.create();
+    std::vector<Drawable*> drawables;
+    drawables.push_back(&object);
 
-    for (int i = 0; i < 1000; i++) {
-        usleep(10000);
-        object.rotate(p1, 0.01);
-    }
+    MenuScene scene(drawables);
+    MainController controller(&scene);
+    KeyboardDispatcher dispatcher(&controller);
+    std::thread thread([&controller] {controller.run();});
+    usleep(100000);
+    std::thread thread2([&dispatcher] {dispatcher.run();});
+
+    thread.join();
+    thread2.join();
 
     return 0;
 }
