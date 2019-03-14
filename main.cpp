@@ -31,20 +31,26 @@ std::vector<Dot> drawName(std::string filename) {
 }
 
 int main() {
-    DotFactory dotFactory("example_files/menu.txt");
-    std::vector<Dot> dots = dotFactory.generate();
-    std::vector<Drawable*> drawables;
-    for (Dot& dot : dots) {
-        drawables.push_back(&dot);
-    }
+    // DotFactory dotFactory("example_files/menu.txt");
+    // std::vector<Dot> dots = dotFactory.generate();
+    // std::vector<Drawable*> drawables;
+    // for (Dot& dot : dots) {
+    //     drawables.push_back(&dot);
+    // }
 
-    MenuScene scene(drawables);
-    MainController controller(&scene);
-    KeyboardDispatcher dispatcher(&controller);
-    std::thread thread2([&dispatcher] {dispatcher.run();});
-    usleep(100000);
-    std::thread thread([&controller] {controller.run();});
-    thread.join();
+    // MenuScene scene(drawables);
+    // MainController controller(&scene);
+    // KeyboardDispatcher dispatcher(&controller);
+    // std::thread thread2([&dispatcher] {dispatcher.run();});
+    // usleep(100000);
+    // std::thread thread([&controller] {controller.run();});
+    // thread.join();
+
+    PolygonFactory polygonFactory("example_files/polygon.txt");
+    std::vector(Polygon) polygons = polygonFactory.generate();
+    for (Polygon& polygon : polygons) {
+        polygon.draw();
+    }
 
     return 0;
 }

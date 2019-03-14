@@ -90,3 +90,11 @@ void Canvas::clear() {
         buffer[i] = 0x0;
     }
 }
+
+int Canvas::getLength() {
+    return screen_info.yres_virtual;
+}
+
+int Canvas::getHeight() {
+    return fixed_info.line_length;
+}
