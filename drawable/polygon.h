@@ -25,6 +25,8 @@ public:
 
     explicit Polygon(Color &color, const std::vector<Point>& points);
 
+    explicit Polygon(int count, ...);
+
     explicit Polygon(Color &color, int count, ...);
 
     std::vector<Point> getPoint();
