@@ -50,7 +50,7 @@ void Polygon::del() {
     temp.del();
 
     Color c(0, 0, 0, 0);
-    scanLineFill(c);
+    scanlineFill(c);
 }
 
 void Polygon::move(long x, long y) {
@@ -95,7 +95,7 @@ void Polygon::dilate(double multiplier) {
 
 void Polygon::initEdgeTable() {
     edgeTable = new EdgeTableTuple[canvas->getHeight()];
-    for (int i = 0; i < screenHeight; i++) 
+    for (int i = 0; i < canvas->getHeight(); i++) 
     { 
         edgeTable[i].countEdgeBucket = 0; 
     }   
