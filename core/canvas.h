@@ -32,6 +32,7 @@ public:
     void deletePoint(Point p);
     Color getPointColor(Point p);
     void movePoint(Point from, Point to, Color c);
+    void clear();
 };
 
 #endif //FRAME_BUFFER_CANVAS_H

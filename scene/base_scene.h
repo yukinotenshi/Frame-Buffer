@@ -40,11 +40,15 @@ public:
     }
 
     void next() {
+        Canvas * canvas = Canvas::getInstance();
+        canvas->clear();
         toChild = true;
         toParent = false;
     }
 
     void back() {
+        Canvas * canvas = Canvas::getInstance();
+        canvas->clear();
         toChild = false;
         toParent = true;
     }

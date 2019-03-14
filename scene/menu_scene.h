@@ -25,6 +25,8 @@ public:
     void update();
 
     void onEvent(BaseEvent event);
+
+    void changeScene();
 };
 
 

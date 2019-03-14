@@ -84,3 +84,9 @@ void Canvas::movePoint(Point from, Point to, Color c) {
     from.setY(to.getY());
     writePoint(from, c);
 }
+
+void Canvas::clear() {
+    for (int i = 0; i < buflen; i++) {
+        buffer[i] = 0x0;
+    }
+}

@@ -29,10 +29,16 @@ public:
                 continue;
             }
             if (currentScene->getChildScene() != nullptr && currentScene->isToChild()) {
+                currentScene->setToChild(false);
                 currentScene = currentScene->getChildScene();
+                currentScene->start();
+                continue;
             }
             if (currentScene->getParentScene() != nullptr && currentScene->isToParent()) {
+                currentScene->setToParent(false);
                 currentScene = currentScene->getParentScene();
+                currentScene->start();
+                continue;
             }
             currentScene->update();
         }
@@ -40,6 +46,10 @@ public:
 
     void dispatchEvent(BaseEvent event) {
         if (currentScene == nullptr) {
+            return;
+        }
+        if (event.value == 27) {
+            currentScene->back();
             return;
         }
         currentScene->onEvent(event);
