@@ -24,7 +24,6 @@ public:
         }
         currentScene->start();
         while (true) {
-            usleep(1000);
             if (currentScene == nullptr) {
                 continue;
             }

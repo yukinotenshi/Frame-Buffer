@@ -42,7 +42,7 @@ void MenuScene::onEvent(BaseEvent event) {
         pointer->move(0, -42);
         pointerPos -= 1;
     }
-    if (c == 's' && pointerPos < 5) {
+    if (c == 's' && pointerPos < 6) {
         pointer->move(0, 42);
         pointerPos += 1;
     }
@@ -80,7 +80,7 @@ void MenuScene::changeScene() {
             childScene = new SixthScene(this);
             next();
             break;
-        // case 5:
+        // case 6:
         //     childScene = new SeventhScene(this);
         //     next();
         //     break;
