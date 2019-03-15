@@ -14,7 +14,7 @@ SeventhScene::SeventhScene(std::vector<Drawable *> drawables) : BaseScene(drawab
 SeventhScene::~SeventhScene() {}
 
 void SeventhScene::start() {
-    PolygonFactory polygonFactory("example_files/polygon.txt");
+    PolygonFactory polygonFactory("example_files/polygon2.txt");
     std::vector<Polygon> polygons = polygonFactory.generate();
     for (Polygon& polygon : polygons) {
         polygon.draw();
