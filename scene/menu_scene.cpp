@@ -80,10 +80,10 @@ void MenuScene::changeScene() {
             childScene = new SixthScene(this);
             next();
             break;
-        // case 6:
-        //     childScene = new SeventhScene(this);
-        //     next();
-        //     break;
+        case 6:
+             childScene = new SeventhScene(this);
+             next();
+             break;
         default:
             break;
     }
